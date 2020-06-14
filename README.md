@@ -30,7 +30,7 @@ The entire project will be created through Google's 'Android Studio' Software De
         <li>Carbonite Alkalinity = Alkalinity - (1/3 * Cyanuric acid)</li>
       </ul>
     <li> SI >= 0.5: water may become cloudy or desposit scale</li>
-    <li> SI <= -0.3: water may become corrosive to concrete, plaster, or metal surfaces.<li>
+    <li> SI <= -0.3: water may become corrosive to concrete, plaster, or metal surfaces.</li>
     <li>Calcium scaling can usually be treated, but etching from corrosiveness often causes permanent damage to surfaces. Therefore it is generally recommend that water be balanced toward the higher (potentially scaling) side of the SI, rather than the lower (potentially etching) end.</li>
   </ul>
 </ul>
