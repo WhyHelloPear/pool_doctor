@@ -16,6 +16,8 @@ The entire project will be created through Google's 'Android Studio' Software De
         <li>Pool Technition: tracks history of any number of pools.</li>
       </ul>
   </li>
+  <li>Create graphic visuals from the recorded history of a pool's chemical balance as well as the treatments applied towards the pool.</li>
+  <li>Create Saturation Index (SI) tool.</li>
 </ol>
   
 # General Notes for Pools
