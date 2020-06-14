@@ -1,7 +1,7 @@
 # Pool App
 Summer project for an app (currently intended for android only) that helps with balancing the chemical balance of pools based off of their current chem readings.
 
-The entire project will be created through Google's 'Android Studio' Software Developement Kit (SDK). The App will run on Android 4.3 (Jellbean API 18) with the Kotlin programming language.
+The entire project will be created through Google's 'Android Studio' Software Developement Kit (SDK). The App will run on Android 4.3 (Jellbean API 18) with the Kotlin programming language. All project files are stored in the 'project' folder of this repository.
 
 
 # Intended Features
