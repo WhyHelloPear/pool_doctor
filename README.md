@@ -8,8 +8,7 @@ Summer project for an app (currently intended for android only) that helps with 
   <li>Implement the taylor watergram wheel (the logic used behind it) for pool diagnostics.</li>
   <li>Implement the charts in the back of the talor book.</li>
   <li>Implement a tool that estimates the volume of a pool based on its shape.</li>
-  <li>Create pool profiles of different customers (this would track the history of a pool's chemistry over time and would also track the treatments performed towards the pool).</li>
-  <li>Create different types of user profiles
+  <li>Create different types of user profiles (this would track the history of a pool's chemistry over time and would also track the treatments performed towards the pool).
       <ul>
         <li>Owner of pool: only tracks the history of a single pool</li>
         <li>Pool Technition: tracks history of any number of pools.</li>
