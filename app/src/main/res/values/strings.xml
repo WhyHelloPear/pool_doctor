@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">My Pool App</string>
+    <string name="ph_txt">pH</string>
+    <string name="reading_entry">N/A</string>
+    <string name="alk_txt">Alkalinity</string>
+    <string name="fc_txt">Free Chlorine</string>
+    <string name="tc_txt">Total Chlorine</string>
+    <string name="cya_txt">Cyanuric Acid</string>
+    <string name="ca_txt">Calcium Hardness</string>
+    <string name="tmp_txt">Temperature</string>
+    <string name="br_txt">Bromine</string>
+    <string name="cc_txt">Combined Chlorine</string>
 </resources>
