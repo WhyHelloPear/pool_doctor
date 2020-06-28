@@ -1,0 +1,4 @@
+<resources>
+    <bool name="pool_toggle">true</bool>
+    <bool name="spa_toggle">false</bool>
+</resources>

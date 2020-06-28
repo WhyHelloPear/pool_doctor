@@ -10,4 +10,6 @@
     <string name="tmp_txt">Temperature</string>
     <string name="br_txt">Bromine</string>
     <string name="cc_txt">Combined Chlorine</string>
+    <string name="pool_txt">Pool</string>
+    <string name="spa_txt">Spa</string>
 </resources>
