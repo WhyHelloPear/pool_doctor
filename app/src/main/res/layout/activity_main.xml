@@ -5,7 +5,7 @@
     android:id="@+id/reading_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#9C811B1B"
     tools:context=".ReadingsActivity">
 
     <ToggleButton
@@ -13,10 +13,11 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal|end"
-        android:background="#AEFFFFFF"
-        android:checked="@bool/spa_toggle"
+        android:background="#0000838F"
+        android:clickable="true"
         android:text="@string/spa_txt"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textOff="@string/spa_txt"
         android:textOn="@string/spa_txt"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,315 +29,71 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_gravity="start"
-        android:background="#AE515151"
         android:checked="true"
+        android:clickable="false"
         android:text="@string/pool_txt"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textOff="@string/pool_txt"
         android:textOn="@string/pool_txt"
         app:layout_constraintEnd_toStartOf="@+id/spa_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/fc_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/fc_entry"
-        android:text="@string/fc_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alk_label" />
 
-    <TextView
-        android:id="@+id/tc_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/tc_entry"
-        android:text="@string/tc_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fc_label" />
-
-    <TextView
-        android:id="@+id/cc_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/cc_entry"
-        android:text="@string/cc_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tc_label" />
-
-    <TextView
-        android:id="@+id/br_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/br_entry"
-        android:text="@string/br_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cc_label" />
-
-    <TextView
-        android:id="@+id/ca_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/ca_entry"
-        android:text="@string/ca_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/br_label" />
-
-    <TextView
-        android:id="@+id/cya_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/cya_entry"
-        android:text="@string/cya_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ca_label" />
-
-    <TextView
-        android:id="@+id/tmp_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/tmp_entry"
-        android:text="@string/tmp_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cya_label" />
-
-    <TextView
-        android:id="@+id/ph_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:labelFor="@id/ph_entry"
-        android:text="@string/ph_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pool_button" />
-
-    <TextView
-        android:id="@+id/alk_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/alk_entry"
-        android:text="@string/alk_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ph_label" />
-
-    <EditText
-        android:id="@+id/ph_entry"
-        style="@android:style/Widget.DeviceDefault.EditText"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:inputType="numberDecimal"
-        android:numeric="decimal"
-        app:layout_constraintStart_toEndOf="@+id/ph_label"
-        app:layout_constraintTop_toBottomOf="@+id/pool_button" />
-
-    <TextView
-        android:id="@+id/br_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/br_label"
-        app:layout_constraintTop_toBottomOf="@+id/cc_entry" />
-
-    <TextView
-        android:id="@+id/tmp_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/tmp_label"
-        app:layout_constraintTop_toBottomOf="@+id/cya_entry" />
-
-    <TextView
-        android:id="@+id/ca_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/ca_label"
-        app:layout_constraintTop_toBottomOf="@+id/br_entry" />
-
-    <TextView
-        android:id="@+id/cya_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/cya_label"
-        app:layout_constraintTop_toBottomOf="@+id/ca_entry" />
-
-    <TextView
-        android:id="@+id/cc_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/cc_label"
-        app:layout_constraintTop_toBottomOf="@+id/tc_entry" />
-
-    <TextView
-        android:id="@+id/tc_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/tc_label"
-        app:layout_constraintTop_toBottomOf="@+id/fc_entry" />
-
-    <TextView
-        android:id="@+id/alk_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/alk_label"
-        app:layout_constraintTop_toBottomOf="@+id/ph_entry" />
-
-    <TextView
-        android:id="@+id/fc_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/fc_label"
-        app:layout_constraintTop_toBottomOf="@+id/alk_entry" />
-
-    <ProgressBar
-        android:id="@+id/ph_scale"
-        style="?android:attr/progressBarStyleHorizontal"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ph_card"
         android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ph_entry"
-        app:layout_constraintTop_toBottomOf="@+id/spa_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spa_button">
 
+        <TableRow
+            android:id="@+id/ph_card_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/alk_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/alk_entry"
-        app:layout_constraintTop_toBottomOf="@+id/ph_scale" />
+            <TextView
+                android:id="@+id/ph_label"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:labelFor="@id/ph_entry_q23451"
+                android:text="@string/ph_txt"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
-    <ProgressBar
-        android:id="@+id/fc_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fc_entry"
-        app:layout_constraintTop_toBottomOf="@+id/alk_scale" />
+            <EditText
+                android:id="@+id/ph_entry"
+                style="@android:style/Widget.DeviceDefault.EditText"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:inputType="numberDecimal"
+                android:maxLength="3"
+                android:numeric="decimal"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
-    <ProgressBar
-        android:id="@+id/tc_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tc_entry"
-        app:layout_constraintTop_toBottomOf="@+id/fc_scale" />
+            <ProgressBar
+                android:id="@+id/ph_scale"
+                style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:clickable="false"
+                android:max="1"
+                android:progress="0"
+                app:layout_constraintTop_toBottomOf="@+id/spa_button" />
 
-    <ProgressBar
-        android:id="@+id/tmp_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tmp_entry"
-        app:layout_constraintTop_toBottomOf="@+id/cya_scale" />
+        </TableRow>
 
-    <ProgressBar
-        android:id="@+id/cc_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cc_entry"
-        app:layout_constraintTop_toBottomOf="@+id/tc_scale" />
-
-    <ProgressBar
-        android:id="@+id/br_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/br_entry"
-        app:layout_constraintTop_toBottomOf="@+id/cc_scale" />
-
-    <ProgressBar
-        android:id="@+id/ca_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ca_entry"
-        app:layout_constraintTop_toBottomOf="@+id/br_scale" />
-
-    <ProgressBar
-        android:id="@+id/cya_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cya_entry"
-        app:layout_constraintTop_toBottomOf="@+id/ca_scale" />
+    </androidx.cardview.widget.CardView>
 
     <!--    </ScrollView>-->
 
