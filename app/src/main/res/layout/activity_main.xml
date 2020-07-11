@@ -6,324 +6,512 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#9C811B1B"
+    android:focusable="auto"
+    android:focusableInTouchMode="true"
     tools:context=".ReadingsActivity">
 
-    <ToggleButton
-        android:id="@+id/pool_button"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_gravity="start"
-        android:checked="true"
-        android:clickable="false"
-        android:text="@string/pool_txt"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textOff="@string/pool_txt"
-        android:textOn="@string/pool_txt"
-        app:layout_constraintEnd_toStartOf="@+id/spa_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ToggleButton
-        android:id="@+id/spa_button"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal|end"
-        android:background="#0000838F"
-        android:clickable="true"
-        android:text="@string/spa_txt"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textOff="@string/spa_txt"
-        android:textOn="@string/spa_txt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pool_button"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/ph_card"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="64dp"
-        app:cardBackgroundColor="#959595"
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spa_button">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow
-            android:id="@+id/ph_card_header"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="9dp"
-                android:background="#00FFFFFF"
-                app:srcCompat="@android:drawable/ic_menu_info_details" />
-
-            <TextView
-                android:id="@+id/ph_label"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/ph_txt"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/ph_entry"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="10dp"
-                android:inputType="number"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF" />
-
-            <ProgressBar
-                android:id="@+id/ph_scale"
-                style="?android:attr/progressBarStyleHorizontal"
+            <!--  Button Container  -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:max="1"
-                android:progress="0" />
-        </TableRow>
-    </androidx.cardview.widget.CardView>
+                android:layout_height="60dp"
+                android:weightSum="2"
+                android:orientation="horizontal">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/chlor_card"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:cardBackgroundColor="#00FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ph_card">
+                <!--  Pool Button  -->
+                <ToggleButton
+                    android:id="@+id/pool_button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:text="@string/pool_txt"
+                    android:textColor="#FFFFFF"
+                    android:textOff="@string/pool_txt"
+                    android:textOn="@string/pool_txt" />
 
-        <TableRow
-            android:id="@+id/chlor_card_header"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <!--  Spa Button  -->
+                <ToggleButton
+                    android:id="@+id/spa_button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|end"
+                    android:background="#0000838F"
+                    android:clickable="false"
+                    android:text="@string/spa_txt"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textOff="@string/spa_txt"
+                    android:textOn="@string/spa_txt" />
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="9dp"
-                android:background="#00FFFFFF"
-                app:srcCompat="@android:drawable/ic_menu_info_details" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/chlor_label"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/fc_txt"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/chlor_entry"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="10dp"
-                android:inputType="number"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF" />
-
-            <ProgressBar
-                android:id="@+id/chlor_scale"
-                style="?android:attr/progressBarStyleHorizontal"
+            <!--  Card Container  -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:max="1"
-                android:progress="0" />
-        </TableRow>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/alk_card"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:cardBackgroundColor="#959595"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chlor_card">
-
-        <TableRow
-            android:id="@+id/alk_card_header"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="9dp"
-                android:background="#00FFFFFF"
-                app:srcCompat="@android:drawable/ic_menu_info_details" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/alk_label"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/alk_txt"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF" />
+                <!--  pH Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ph_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#959595">
 
-            <EditText
-                android:id="@+id/alk_entry"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="10dp"
-                android:inputType="number"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF" />
+                    <!--  pH Card Header  -->
+                    <TableRow
+                        android:id="@+id/ph_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
 
-            <ProgressBar
-                android:id="@+id/alk_scale"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:max="1"
-                android:progress="0" />
-        </TableRow>
-    </androidx.cardview.widget.CardView>
+                        <TableRow
+                            android:id="@+id/ph_card_click_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:clipChildren="false"
+                            android:focusable="auto">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/ca_card"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:cardBackgroundColor="#00FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alk_card">
+                            <ImageButton
+                                android:id="@+id/ph_info_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="9dp"
+                                android:background="#00FFFFFF"
+                                app:srcCompat="@android:drawable/ic_menu_info_details" />
 
-        <TableRow
-            android:id="@+id/ca_card_header"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                            <TextView
+                                android:id="@+id/ph_label"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="@string/ph_txt"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="9dp"
-                android:background="#00FFFFFF"
-                app:srcCompat="@android:drawable/ic_menu_info_details" />
+                        <EditText
+                            android:id="@+id/ph_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="number"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/ca_label"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/ca_txt"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF" />
+                        <ProgressBar
+                            android:id="@+id/ph_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
 
-            <EditText
-                android:id="@+id/ca_entry"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="10dp"
-                android:inputType="number"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF" />
+                    </TableRow>
 
-            <ProgressBar
-                android:id="@+id/ca_scale"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:max="1"
-                android:progress="0" />
-        </TableRow>
-    </androidx.cardview.widget.CardView>
+                    <!--  pH Card Body  -->
+                    <TableRow
+                        android:id="@+id/ph_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cya_card"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:cardBackgroundColor="#959595"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ca_card">
+                        <ImageView
+                            android:id="@+id/ph_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
 
-        <TableRow
-            android:id="@+id/cya_card_header"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/ph_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/test_body_text" />
+                    </TableRow>
 
-            <ImageButton
-                android:id="@+id/imageButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="9dp"
-                android:background="#00FFFFFF"
-                app:srcCompat="@android:drawable/ic_menu_info_details" />
+                </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/cya_label"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/cya_txt"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF" />
+                <!--  Chlorine Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/chlor_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#00FFFFFF">
 
-            <EditText
-                android:id="@+id/cya_entry"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="10dp"
-                android:inputType="number"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF" />
+                    <!--  Chlorine Header  -->
+                    <TableRow
+                        android:id="@+id/chlor_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
 
-            <ProgressBar
-                android:id="@+id/cya_scale"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:max="1"
-                android:progress="0" />
-        </TableRow>
-    </androidx.cardview.widget.CardView>
+                        <TableRow
+                            android:id="@+id/chlor_card_click_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:clipChildren="false"
+                            android:focusable="auto">
+
+                            <ImageButton
+                                android:id="@+id/chlor_info_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="9dp"
+                                android:background="#00FFFFFF"
+                                app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                            <TextView
+                                android:id="@+id/chlor_label"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="@string/fc_txt"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
+
+                        <EditText
+                            android:id="@+id/chlor_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="number"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+
+                        <ProgressBar
+                            android:id="@+id/chlor_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Chlorine Body  -->
+                    <TableRow
+                        android:id="@+id/chlor_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/chlor_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/chlor_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/test_body_text" />
+                    </TableRow>
+                </androidx.cardview.widget.CardView>
+
+                <!--  Alkalinity Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/alk_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#959595">
+
+                    <!--  Alkalinity Header  -->
+                    <TableRow
+                        android:id="@+id/alk_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <TableRow
+                            android:id="@+id/alk_card_click_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:clipChildren="false"
+                            android:focusable="auto">
+
+                            <ImageButton
+                                android:id="@+id/alk_info_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="9dp"
+                                android:background="#00FFFFFF"
+                                app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                            <TextView
+                                android:id="@+id/alk_label"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="@string/alk_txt"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
+
+                        <EditText
+                            android:id="@+id/alk_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="number"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+
+                        <ProgressBar
+                            android:id="@+id/alk_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Alkalinity Body  -->
+                    <TableRow
+                        android:id="@+id/alk_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/alk_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/alk_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/test_body_text" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--  Calcium Hardness Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ca_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#00FFFFFF">
+
+                    <!--  Calcium Hardness Header  -->
+                    <TableRow
+                        android:id="@+id/ca_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <TableRow
+                            android:id="@+id/ca_card_click_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:clipChildren="false"
+                            android:focusable="auto">
+
+                            <ImageButton
+                                android:id="@+id/ca_info_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="9dp"
+                                android:background="#00FFFFFF"
+                                app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                            <TextView
+                                android:id="@+id/ca_label"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="@string/ca_txt"
+                                android:textColor="#FFFFFF" />
+
+                        </TableRow>
+
+                        <EditText
+                            android:id="@+id/ca_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="number"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+
+                        <ProgressBar
+                            android:id="@+id/ca_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Calcium Hardness Body  -->
+                    <TableRow
+                        android:id="@+id/ca_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ca_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/ca_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/test_body_text" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--  Cyanuric Acid Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cya_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="#959595">
+
+                    <!--  Cyanuric Acid Header  -->
+                    <TableRow
+                        android:id="@+id/cya_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <TableRow
+                            android:id="@+id/cya_card_click_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:clipChildren="false"
+                            android:focusable="auto">
+
+                            <ImageButton
+                                android:id="@+id/cya_info_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="9dp"
+                                android:background="#00FFFFFF"
+                                app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                            <TextView
+                                android:id="@+id/cya_label"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="@string/cya_txt"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
+
+                        <EditText
+                            android:id="@+id/cya_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="number"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+
+                        <ProgressBar
+                            android:id="@+id/cya_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Cyanuric Acid Body  -->
+                    <TableRow
+                        android:id="@+id/cya_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/cya_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/cya_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/test_body_text" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
     <!--    </ScrollView>-->

@@ -4,7 +4,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.core.view.updateLayoutParams
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -51,11 +55,22 @@ class ReadingsActivity : AppCompatActivity(){
         println(input)
     }
 
+    fun expandCard(row: TableRow){
+        if(row.visibility == View.VISIBLE) {
+            row.visibility = View.GONE
+        }
+        else{
+            row.visibility = View.VISIBLE
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         activatePool() //set page with pool profile selected by default
         deactivateSpa() //make sure spa profile is deactivated
+
         pool_button.setOnClickListener{
             println("Pool button pressed!")
             if(getVesselType() == "pool"){
@@ -81,6 +96,31 @@ class ReadingsActivity : AppCompatActivity(){
             println(getVesselType())
         }
 
+        ph_card_click_area.setOnClickListener(){ expandCard(ph_info_body) }
+        ph_info_button.setOnClickListener(){ expandCard(ph_info_body) }
+        ph_info_body.setOnClickListener(){ expandCard(ph_info_body) }
+
+        chlor_card_click_area.setOnClickListener(){ expandCard(chlor_info_body) }
+        chlor_info_button.setOnClickListener(){ expandCard(chlor_info_body) }
+        chlor_info_body.setOnClickListener(){ expandCard(chlor_info_body) }
+
+        alk_card_click_area.setOnClickListener(){ expandCard(alk_info_body) }
+        alk_info_button.setOnClickListener(){ expandCard(alk_info_body) }
+        alk_info_body.setOnClickListener(){ expandCard(alk_info_body) }
+
+        ca_card_click_area.setOnClickListener(){ expandCard(ca_info_body) }
+        ca_info_button.setOnClickListener(){ expandCard(ca_info_body) }
+        ca_info_body.setOnClickListener(){ expandCard(ca_info_body) }
+
+        cya_card_click_area.setOnClickListener(){ expandCard(cya_info_body) }
+        cya_info_button.setOnClickListener(){ expandCard(cya_info_body) }
+        cya_info_body.setOnClickListener(){ expandCard(cya_info_body) }
+
+
+
+
+
+
         ph_entry.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -88,6 +128,7 @@ class ReadingsActivity : AppCompatActivity(){
                 phEntryHandler(s)
             }
         })
+
     }
 
 }
