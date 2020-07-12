@@ -15,9 +15,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,16 +29,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:weightSum="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <!--  Pool Button  -->
                 <ToggleButton
                     android:id="@+id/pool_button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:layout_gravity="start"
+                    android:layout_weight="1"
                     android:checked="true"
                     android:clickable="false"
                     android:text="@string/pool_txt"
@@ -49,9 +50,9 @@
                 <ToggleButton
                     android:id="@+id/spa_button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal|end"
+                    android:layout_weight="1"
                     android:background="#0000838F"
                     android:clickable="false"
                     android:text="@string/spa_txt"
@@ -62,10 +63,34 @@
 
             </LinearLayout>
 
-            <!--  Card Container  -->
+            <TextView
+                android:id="@+id/page_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Readings Page"
+                android:textSize="24sp" />
+
+            <TableRow
+                android:id="@+id/page_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:clipChildren="false"
+                android:focusable="auto">
+                >
+
+                <TextView
+                    android:id="@+id/description_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="blah blah blah blah blah blah aoisehufjop iasdhfvpoiuaehnr plfvgiouaesyrnhbtgpv"
+                    android:textSize="16sp" />
+            </TableRow>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
                 <!--  pH Card  -->
@@ -116,7 +141,10 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="0dp"
                             android:layout_marginEnd="10dp"
-                            android:inputType="number"
+                            android:hint="0.0"
+                            android:imeOptions="actionDone"
+                            android:inputType="numberDecimal"
+                            android:maxLength="3"
                             android:textAlignment="center"
                             android:textColor="#FFFFFF" />
 
@@ -504,7 +532,92 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <!--  Phosphates Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/phos_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="#00FFFFFF">
 
+                    <!--  Phosphates Header  -->
+                    <TableRow
+                        android:id="@+id/phos_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <TableRow
+                            android:id="@+id/phos_card_click_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:clipChildren="false"
+                            android:focusable="auto">
+
+                            <ImageButton
+                                android:id="@+id/phos_info_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="9dp"
+                                android:background="#00FFFFFF"
+                                app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                            <TextView
+                                android:id="@+id/phos_label"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="5dp"
+                                android:text="@string/phos_txt"
+                                android:textColor="#FFFFFF" />
+                        </TableRow>
+
+                        <EditText
+                            android:id="@+id/phos_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="number"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF" />
+
+                        <ProgressBar
+                            android:id="@+id/phos_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Phosphates Body  -->
+                    <TableRow
+                        android:id="@+id/phos_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/phos_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/phos_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/test_body_text" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
