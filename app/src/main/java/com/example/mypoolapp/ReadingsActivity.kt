@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class ReadingsActivity : AppCompatActivity(){
 
     private  var vesselType: String = "pool"
-    private var active_view: TableRow = page_description
     private var ph_reading: Float = 0f
     private var fc_reading: Float = 0f
     private var cc_reading: Float = 0f
@@ -25,33 +24,42 @@ class ReadingsActivity : AppCompatActivity(){
     private var cya_reading: Int = 0
     private var phos_reading: Int = 0
 
+    private lateinit var active_body: TableRow
+
+    private fun getIMM(): InputMethodManager{ return getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager }
 
     private fun enableKeyboard(view: View) {
-        val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(view,0)
+        val imm = getIMM()
+        imm.showSoftInput(view,1)
     }
 
     private fun disableKeyboard(view: View) {
-        val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm = getIMM()
         imm.hideSoftInputFromWindow(view.windowToken,0)
     }
 
-    private fun expandCard(row: TableRow, entry: EditText){
-        if(row.visibility == View.VISIBLE) {
-            disableKeyboard(entry)
-            row.visibility = View.GONE
+    private fun hideView(view: View){ view.visibility = View.GONE }
 
-        }
-        else {
-            entry.requestFocus()
-            enableKeyboard(entry)
-            row.visibility = View.VISIBLE
-        }
+    private fun showView(view: TableRow, entry: View){
+        view.visibility = View.VISIBLE
+        active_body = view
+        entry.requestFocus()
     }
 
-
-
-
+    private fun toggleActiveBody(body: TableRow, entry: EditText){
+        if(body.visibility == View.VISIBLE) {
+            hideView(body)
+            showView(page_header, page_entry)
+            disableKeyboard(entry)
+        }
+        else{
+            if(active_body != page_header){
+                hideView(active_body)
+            }
+            showView(body, entry)
+            enableKeyboard(entry)
+        }
+    }
 
     private fun getVesselType(): String{ return vesselType }
 
@@ -125,36 +133,37 @@ class ReadingsActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        active_body = page_header
+
         activatePool() //set page with pool profile selected by default
         deactivateSpa() //make sure spa profile is deactivated
 
         pool_button.setOnClickListener{ profileHandler("pool") }
         spa_button.setOnClickListener{ profileHandler("spa" ) }
 
-        ph_card_click_area.setOnClickListener(){ expandCard(ph_info_body, ph_entry) }
-        ph_info_button.setOnClickListener(){ expandCard(ph_info_body, ph_entry) }
-        ph_info_body.setOnClickListener(){ expandCard(ph_info_body, ph_entry) }
+        ph_card_click_area.setOnClickListener(){ toggleActiveBody(ph_info_body, ph_entry) }
+        ph_info_button.setOnClickListener(){ toggleActiveBody(ph_info_body, ph_entry) }
+        ph_info_body.setOnClickListener(){ toggleActiveBody(ph_info_body, ph_entry) }
 
-        chlor_card_click_area.setOnClickListener(){ expandCard(chlor_info_body, chlor_entry) }
-        chlor_info_button.setOnClickListener(){ expandCard(chlor_info_body, chlor_entry) }
-        chlor_info_body.setOnClickListener(){ expandCard(chlor_info_body, chlor_entry) }
+        chlor_card_click_area.setOnClickListener(){ toggleActiveBody(chlor_info_body, chlor_entry) }
+        chlor_info_button.setOnClickListener(){ toggleActiveBody(chlor_info_body, chlor_entry) }
+        chlor_info_body.setOnClickListener(){ toggleActiveBody(chlor_info_body, chlor_entry) }
 
-        alk_card_click_area.setOnClickListener(){ expandCard(alk_info_body, alk_entry) }
-        alk_info_button.setOnClickListener(){ expandCard(alk_info_body, alk_entry) }
-        alk_info_body.setOnClickListener(){ expandCard(alk_info_body, alk_entry) }
+        alk_card_click_area.setOnClickListener(){ toggleActiveBody(alk_info_body, alk_entry) }
+        alk_info_button.setOnClickListener(){ toggleActiveBody(alk_info_body, alk_entry) }
+        alk_info_body.setOnClickListener(){ toggleActiveBody(alk_info_body, alk_entry) }
 
-        ca_card_click_area.setOnClickListener(){ expandCard(ca_info_body, ca_entry) }
-        ca_info_button.setOnClickListener(){ expandCard(ca_info_body, ca_entry) }
-        ca_info_body.setOnClickListener(){ expandCard(ca_info_body, ca_entry) }
+        ca_card_click_area.setOnClickListener(){ toggleActiveBody(ca_info_body, ca_entry) }
+        ca_info_button.setOnClickListener(){ toggleActiveBody(ca_info_body, ca_entry) }
+        ca_info_body.setOnClickListener(){ toggleActiveBody(ca_info_body, ca_entry) }
 
-        cya_card_click_area.setOnClickListener(){ expandCard(cya_info_body, cya_entry) }
-        cya_info_button.setOnClickListener(){ expandCard(cya_info_body, cya_entry) }
-        cya_info_body.setOnClickListener(){ expandCard(cya_info_body, cya_entry) }
+        cya_card_click_area.setOnClickListener(){ toggleActiveBody(cya_info_body, cya_entry) }
+        cya_info_button.setOnClickListener(){ toggleActiveBody(cya_info_body, cya_entry) }
+        cya_info_body.setOnClickListener(){ toggleActiveBody(cya_info_body, cya_entry) }
 
-        phos_card_click_area.setOnClickListener(){ expandCard(phos_info_body, phos_entry) }
-        phos_info_button.setOnClickListener(){ expandCard(phos_info_body, phos_entry) }
-        phos_info_body.setOnClickListener { expandCard(phos_info_body, phos_entry) }
-
+        phos_card_click_area.setOnClickListener(){ toggleActiveBody(phos_info_body, phos_entry) }
+        phos_info_button.setOnClickListener(){ toggleActiveBody(phos_info_body, phos_entry) }
+        phos_info_body.setOnClickListener { toggleActiveBody(phos_info_body, phos_entry) }
 
         ph_entry.addTextChangedListener(object: TextWatcher {
             var orig:CharSequence = ""
