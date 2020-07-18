@@ -18,19 +18,15 @@ class ReadingsActivity : AppCompatActivity(){
 
     data class Element(val name: String, val card_body: TableRow, val card_entry: EditText, val full_range: List<Float>, val ideal_range: List<Float>) {}
 
+//    val defaultElement:Element = Element("default", page_header, page_entry, listOf(0f,0f), listOf(0f,0f))
+
+
+
+    private lateinit var defaultElement:Element
+    private lateinit var activeElement:Element
+
     private  var vesselType: String = "pool"
-    private var ph_reading: Float = 0f
-    private var fc_reading: Float = 0f
-    private var cc_reading: Float = 0f
-    private var alk_reading: Int = 0
-    private var ca_reading: Int = 0
-    private var cya_reading: Int = 0
-    private var phos_reading: Int = 0
 
-    val ph_range = listOf(7f,8f)
-
-
-    private lateinit var active_body: TableRow
 
     private fun getIMM(): InputMethodManager{ return getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager }
 
@@ -42,30 +38,6 @@ class ReadingsActivity : AppCompatActivity(){
     private fun disableKeyboard(view: View) {
         val imm = getIMM()
         imm.hideSoftInputFromWindow(view.windowToken,0)
-    }
-
-    private fun hideView(view: View){ view.visibility = View.GONE }
-
-    private fun showView(element: Element){
-        element.card_body.visibility = View.VISIBLE
-        active_body = element.card_body
-        element.card_entry.requestFocus()
-    }
-
-    private fun toggleActiveBody(element: Element){
-        if(element.card_body.visibility == View.VISIBLE) {
-            hideView(element.card_body)
-            showView(element)
-            disableKeyboard(element.card_body)
-        }
-        else{
-            if(active_body != page_header){
-                hideView(active_body)
-
-            }
-            showView(element)
-            enableKeyboard(element.card_entry)
-        }
     }
 
     private fun getVesselType(): String{ return vesselType }
@@ -128,10 +100,51 @@ class ReadingsActivity : AppCompatActivity(){
         }
     }
 
-    private fun entryHandler(input: CharSequence, entry: EditText, range: List<Float>){
-        val t = entry.text
-        println("input from parameter: $input")
-        println("Text currently in box: $t")
+//    private fun entryHandler(input: CharSequence, entry: EditText, range: List<Float>){
+//        val t = entry.text
+//        println("input from parameter: $input")
+//        println("Text currently in box: $t")
+//    }
+
+    private fun hideElement(element: Element){ element.card_body.visibility = View.GONE }
+
+    private fun showElement(element: Element){
+        element.card_body.visibility = View.VISIBLE
+        activeElement = element
+        element.card_entry.requestFocus()
+    }
+
+
+
+// When to check if a user has entered a number
+    // 1) When card gets activated -----> Check the previous active element
+        // If the previous active element is NOT our default value, check if the previous element's entry has changed
+
+    // 2) When card get deactivated
+
+    // 3) When "next" OR "done" button is pressed for the text entries
+
+
+
+
+
+
+
+    // Function ensures that there is only a single card/profile active on the page at one time
+    private fun toggleActiveBody(element: Element){
+        if(element.card_body.visibility == View.VISIBLE) { // if active card body was selected, we need to reset the page
+            hideElement(element) // deactivate the active card
+            disableKeyboard(element.card_body) // disable the keyboard since no cards are active
+            activeElement = defaultElement// reset the active body to the default value
+        }
+        else{ // if the selected card is NOT visible, we need to switch active card bodies
+            if(activeElement != defaultElement){ //check if the active body is our default preset; if it's not, we need to hide the current active body
+                hideElement(activeElement) //close the active card body so no card is open/selected
+            }
+            showElement(element) //activate the selected card body
+            enableKeyboard(element.card_entry) //bring up the keyboard so user can type shit
+        }
+        if(activeElement == defaultElement){println("DEFAULT CARD IS ACTIVE; NO CARD SELECTED")} //sanity check
     }
 
 
@@ -140,16 +153,15 @@ class ReadingsActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val ph_element:Element = Element("ph", ph_info_body, ph_entry, listOf(7f,8f), listOf(7.4f,7.6f))
-        val chlor_element:Element = Element("chlor", chlor_info_body, chlor_entry, listOf(0f,10f), listOf(7.4f,7.6f))
-        val alk_element:Element = Element("alk", alk_info_body, alk_entry, listOf(0f,1000f), listOf(80f,120f))
-        val ca_element:Element = Element("ca", ca_info_body, ca_entry, listOf(0f,1000f), listOf(200f,400f))
-        val cya_element:Element = Element("cya", cya_info_body, cya_entry, listOf(0f,100f), listOf(30f,80f))
-        val phos_element:Element = Element("phos", phos_info_body, phos_entry, listOf(0f,1000f), listOf(0f,0f))
+        val phElement:Element = Element("ph", ph_info_body, ph_entry, listOf(7f,8f), listOf(7.4f,7.6f))
+        val chlorElement:Element = Element("chlor", chlor_info_body, chlor_entry, listOf(0f,10f), listOf(7.4f,7.6f))
+        val alkElement:Element = Element("alk", alk_info_body, alk_entry, listOf(0f,1000f), listOf(80f,120f))
+        val caElement:Element = Element("ca", ca_info_body, ca_entry, listOf(0f,1000f), listOf(200f,400f))
+        val cyaElement:Element = Element("cya", cya_info_body, cya_entry, listOf(0f,100f), listOf(30f,80f))
+        val phosElement:Element = Element("phos", phos_info_body, phos_entry, listOf(0f,1000f), listOf(0f,0f))
 
-
-
-        active_body = page_header
+        defaultElement = Element("default", page_header, page_entry, listOf(0f,0f), listOf(0f,0f))
+        activeElement = defaultElement
 
         activatePool() //set page with pool profile selected by default
         deactivateSpa() //make sure spa profile is deactivated
@@ -157,29 +169,33 @@ class ReadingsActivity : AppCompatActivity(){
         pool_button.setOnClickListener{ profileHandler("pool") }
         spa_button.setOnClickListener{ profileHandler("spa" ) }
 
-        ph_card_click_area.setOnClickListener(){ toggleActiveBody(ph_element) }
-        ph_info_button.setOnClickListener(){ toggleActiveBody(ph_element) }
-        ph_info_body.setOnClickListener(){ toggleActiveBody(ph_element) }
+        ph_card_click_area.setOnClickListener(){ toggleActiveBody(phElement) }
+        ph_info_button.setOnClickListener(){ toggleActiveBody(phElement) }
+        ph_info_body.setOnClickListener(){ toggleActiveBody(phElement) }
+        ph_entry.setOnClickListener(){toggleActiveBody(phElement)}
 
-        chlor_card_click_area.setOnClickListener(){ toggleActiveBody(chlor_element) }
-        chlor_info_button.setOnClickListener(){ toggleActiveBody(chlor_element) }
-        chlor_info_body.setOnClickListener(){ toggleActiveBody(chlor_element) }
 
-        alk_card_click_area.setOnClickListener(){ toggleActiveBody(alk_element) }
-        alk_info_button.setOnClickListener(){ toggleActiveBody(alk_element) }
-        alk_info_body.setOnClickListener(){ toggleActiveBody(alk_element) }
 
-        ca_card_click_area.setOnClickListener(){ toggleActiveBody(ca_element) }
-        ca_info_button.setOnClickListener(){ toggleActiveBody(ca_element) }
-        ca_info_body.setOnClickListener(){ toggleActiveBody(ca_element) }
 
-        cya_card_click_area.setOnClickListener(){ toggleActiveBody(cya_element) }
-        cya_info_button.setOnClickListener(){ toggleActiveBody(cya_element) }
-        cya_info_body.setOnClickListener(){ toggleActiveBody(cya_element) }
+        chlor_card_click_area.setOnClickListener(){ toggleActiveBody(chlorElement) }
+        chlor_info_button.setOnClickListener(){ toggleActiveBody(chlorElement) }
+        chlor_info_body.setOnClickListener(){ toggleActiveBody(chlorElement) }
 
-        phos_card_click_area.setOnClickListener(){ toggleActiveBody(phos_element) }
-        phos_info_button.setOnClickListener(){ toggleActiveBody(phos_element) }
-        phos_info_body.setOnClickListener { toggleActiveBody(phos_element) }
+        alk_card_click_area.setOnClickListener(){ toggleActiveBody(alkElement) }
+        alk_info_button.setOnClickListener(){ toggleActiveBody(alkElement) }
+        alk_info_body.setOnClickListener(){ toggleActiveBody(alkElement) }
+
+        ca_card_click_area.setOnClickListener(){ toggleActiveBody(caElement) }
+        ca_info_button.setOnClickListener(){ toggleActiveBody(caElement) }
+        ca_info_body.setOnClickListener(){ toggleActiveBody(caElement) }
+
+        cya_card_click_area.setOnClickListener(){ toggleActiveBody(cyaElement) }
+        cya_info_button.setOnClickListener(){ toggleActiveBody(cyaElement) }
+        cya_info_body.setOnClickListener(){ toggleActiveBody(cyaElement) }
+
+        phos_card_click_area.setOnClickListener(){ toggleActiveBody(phosElement) }
+        phos_info_button.setOnClickListener(){ toggleActiveBody(phosElement) }
+        phos_info_body.setOnClickListener { toggleActiveBody(phosElement) }
 
 //        ph_entry.addTextChangedListener(object: TextWatcher {
 //            var orig:CharSequence = ""
