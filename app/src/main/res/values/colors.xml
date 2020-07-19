@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#1a7791</color>
+    <color name="colorPrimaryDark">#343338</color>
+    <color name="colorAccent">#de91a3</color>
+    <color name="transparent">#00FFFFFF</color>
+<!--    <color name="poolBackground">#f5f5f5 </color>-->
+    <color name="poolBackground">#f9fafa </color>
+    <color name="poolOffset">#dcdcdc</color>
+    <color name="darkText">#222222</color>
+
+    <color name="colorset1_1">#40495a </color>
+    <color name="colorset1_2">#01b894</color>
+    <color name="colorset1_3">#a6e6d9 </color>
+    <color name="colorset1_4">#feffff</color>
+    <color name="colorset1_5">#a2a3a3</color>
+
+    <color name="colorset2_1">#151819 </color>
+    <color name="colorset2_2">#367572</color>
+    <color name="colorset2_3">#509d74 </color>
+    <color name="colorset2_4">#5dbbaf</color>
+    <color name="colorset2_5">#f5f8f8</color>
+
+
 </resources>
+
+<!--    Sand Tan: #e1b382-->
+
+<!--    Sand Tan Shadow: #c89666-->
+
+<!--    Night Blue: #2d545e-->
+
+<!--    Night Blue Shadow: #12343b-->

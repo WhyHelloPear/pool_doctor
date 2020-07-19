@@ -5,7 +5,7 @@
     android:id="@+id/reading_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9C811B1B"
+    android:background="@color/poolBackground"
     android:focusable="auto"
     android:focusableInTouchMode="true"
     tools:context=".ReadingsActivity">
@@ -16,10 +16,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,10 +43,8 @@
                     android:checked="true"
                     android:clickable="false"
                     android:text="@string/pool_txt"
-                    android:textColor="#FFFFFF"
                     android:textOff="@string/pool_txt"
                     android:textOn="@string/pool_txt" />
-
                 <!--  Spa Button  -->
                 <ToggleButton
                     android:id="@+id/spa_button"
@@ -58,42 +56,54 @@
                     android:clickable="false"
                     android:text="@string/spa_txt"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
                     android:textOff="@string/spa_txt"
                     android:textOn="@string/spa_txt" />
 
             </LinearLayout>
 
-            <TableRow
-                android:id="@+id/page_header"
+            <!--  Page Header Container  -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false"
-                android:clipChildren="false"
-                android:focusable="auto">
-                >
+                android:orientation="vertical"
+                android:layout_margin="10dp">
 
-                <TextView
-                    android:id="@+id/page_title"
+                <TableRow
+                    android:id="@+id/page_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Readings Page"
-                    android:textSize="24sp" />
+                    android:clickable="false"
+                    android:clipChildren="false"
+                    android:focusable="auto"
+                    android:layout_marginBottom="10dp">
 
-                <EditText
-                    android:id="@+id/page_entry"
-                    android:layout_width="10dp"
-                    android:layout_height="0dp" />
+                    <TextView
+                        android:id="@+id/page_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reading_page_header_txt"
+                        android:textColor="@color/darkText"
+                        android:textSize="26sp" />
 
-            </TableRow>
+                    <EditText
+                        android:id="@+id/page_entry"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:inputType="none" />
 
-            <TextView
-                android:id="@+id/page_body"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="blah blah blah blah blah blah aoisehufjop iasdhfvpoiuaehnr plfvgiouaesyrnhbtgpv"
-                android:textSize="16sp" />
+                </TableRow>
 
+                <TextView
+                    android:id="@+id/page_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/reading_page_description"
+                    android:textColor="@color/darkText"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!--  Card Container  -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,7 +115,13 @@
                     android:id="@+id/ph_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#959595">
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
 
                     <!--  pH Card Header  -->
                     <TableRow
@@ -131,7 +147,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="5dp"
                             android:text="@string/ph_txt"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/darkText" />
 
                         <EditText
                             android:id="@+id/ph_entry"
@@ -139,11 +155,11 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="0dp"
                             android:layout_marginEnd="10dp"
-                            android:hint="0.0"
+                            android:hint="@string/float_hint"
                             android:inputType="numberDecimal"
                             android:maxLength="3"
                             android:textAlignment="center"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/darkText" />
 
                         <ProgressBar
                             android:id="@+id/ph_scale"
@@ -160,7 +176,7 @@
                     <TableRow
                         android:id="@+id/ph_info_body"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
                         android:visibility="gone">
 
@@ -176,7 +192,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="@string/test_body_text" />
+                            android:text="@string/ph_body_txt" />
                     </TableRow>
 
                 </androidx.cardview.widget.CardView>
@@ -186,7 +202,13 @@
                     android:id="@+id/chlor_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#00FFFFFF">
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
 
                     <!--  Chlorine Header  -->
                     <TableRow
@@ -212,7 +234,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="5dp"
                             android:text="@string/fc_txt"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/darkText" />
 
                         <EditText
                             android:id="@+id/chlor_entry"
@@ -221,9 +243,10 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
-                            android:textAlignment="center"
+                            android:hint="@string/float_hint"
                             android:maxLength="3"
-                            android:textColor="#FFFFFF" />
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
 
                         <ProgressBar
                             android:id="@+id/chlor_scale"
@@ -239,7 +262,7 @@
                     <TableRow
                         android:id="@+id/chlor_info_body"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
                         android:visibility="gone">
 
@@ -255,7 +278,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="@string/test_body_text" />
+                            android:text="@string/fc_body_txt" />
                     </TableRow>
                 </androidx.cardview.widget.CardView>
 
@@ -264,7 +287,13 @@
                     android:id="@+id/alk_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#959595">
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
 
                     <!--  Alkalinity Header  -->
                     <TableRow
@@ -290,7 +319,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="5dp"
                             android:text="@string/alk_txt"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/darkText" />
 
                         <EditText
                             android:id="@+id/alk_entry"
@@ -299,9 +328,10 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
-                            android:textAlignment="center"
+                            android:hint="@string/int_hint"
                             android:maxLength="4"
-                            android:textColor="#FFFFFF" />
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
 
                         <ProgressBar
                             android:id="@+id/alk_scale"
@@ -317,7 +347,7 @@
                     <TableRow
                         android:id="@+id/alk_info_body"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
                         android:visibility="gone">
 
@@ -333,7 +363,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="@string/test_body_text" />
+                            android:text="@string/alk_body_txt" />
                     </TableRow>
 
                 </androidx.cardview.widget.CardView>
@@ -343,7 +373,13 @@
                     android:id="@+id/ca_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#00FFFFFF">
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
 
                     <!--  Calcium Hardness Header  -->
                     <TableRow
@@ -369,7 +405,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="5dp"
                             android:text="@string/ca_txt"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/darkText" />
 
                         <EditText
                             android:id="@+id/ca_entry"
@@ -378,9 +414,10 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
-                            android:textAlignment="center"
+                            android:hint="@string/int_hint"
                             android:maxLength="4"
-                            android:textColor="#FFFFFF" />
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
 
                         <ProgressBar
                             android:id="@+id/ca_scale"
@@ -396,7 +433,7 @@
                     <TableRow
                         android:id="@+id/ca_info_body"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
                         android:visibility="gone">
 
@@ -412,7 +449,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="@string/test_body_text" />
+                            android:text="@string/ca_body_txt" />
                     </TableRow>
 
                 </androidx.cardview.widget.CardView>
@@ -422,7 +459,13 @@
                     android:id="@+id/cya_card"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:cardBackgroundColor="#959595">
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
 
                     <!--  Cyanuric Acid Header  -->
                     <TableRow
@@ -448,7 +491,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="5dp"
                             android:text="@string/cya_txt"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/darkText" />
 
                         <EditText
                             android:id="@+id/cya_entry"
@@ -457,9 +500,10 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
+                            android:hint="@string/int_hint"
+                            android:maxLength="4"
                             android:textAlignment="center"
-                            android:maxLength="3"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/darkText" />
 
                         <ProgressBar
                             android:id="@+id/cya_scale"
@@ -475,7 +519,7 @@
                     <TableRow
                         android:id="@+id/cya_info_body"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
                         android:visibility="gone">
 
@@ -491,7 +535,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="@string/test_body_text" />
+                            android:text="@string/cya_body_txt" />
                     </TableRow>
 
                 </androidx.cardview.widget.CardView>
@@ -501,7 +545,13 @@
                     android:id="@+id/phos_card"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:cardBackgroundColor="#00FFFFFF">
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
 
                     <!--  Phosphates Header  -->
                     <TableRow
@@ -527,7 +577,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginEnd="5dp"
                             android:text="@string/phos_txt"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/darkText" />
 
                         <EditText
                             android:id="@+id/phos_entry"
@@ -536,9 +586,10 @@
                             android:layout_marginStart="0dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
-                            android:textAlignment="center"
+                            android:hint="@string/int_hint"
                             android:maxLength="4"
-                            android:textColor="#FFFFFF" />
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
 
                         <ProgressBar
                             android:id="@+id/phos_scale"
@@ -554,7 +605,7 @@
                     <TableRow
                         android:id="@+id/phos_info_body"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
                         android:visibility="gone">
 
@@ -570,10 +621,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="@string/test_body_text" />
+                            android:text="@string/phos_body_txt" />
                     </TableRow>
 
                 </androidx.cardview.widget.CardView>
+
 
             </LinearLayout>
 

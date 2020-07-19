@@ -3,18 +3,12 @@ package com.example.mypoolapp
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.reflect.typeOf
-
 
 class ReadingsActivity : AppCompatActivity(){
 
@@ -23,7 +17,6 @@ class ReadingsActivity : AppCompatActivity(){
     private lateinit var vesselType:String
     private lateinit var activeElement:Element
     private lateinit var defaultElement:Element
-
 
     private fun getIMM(): InputMethodManager{ return getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager }
 
@@ -44,16 +37,16 @@ class ReadingsActivity : AppCompatActivity(){
     private fun activatePool(){
         println("Activating pool profile!")
         setVesselType("pool")
-        reading_page.setBackgroundColor(Color.argb(117,21,96,103))
-        pool_button.setBackgroundColor(Color.TRANSPARENT)
-        pool_button.setTextColor(Color.WHITE)
+        reading_page.setBackgroundColor(ContextCompat.getColor(applicationContext,R.color.poolBackground))
+        pool_button.setBackgroundColor(ContextCompat.getColor(applicationContext,R.color.transparent))
+        pool_button.setTextColor(ContextCompat.getColor(applicationContext,R.color.darkText))
     }
 
     private fun deactivatePool(){
         println("Deactivating pool profile!")
         pool_button.toggle()
         pool_button.setBackgroundColor(Color.GRAY)
-        pool_button.setTextColor(Color.BLACK)
+        pool_button.setTextColor(Color.WHITE)
 
     }
 
@@ -61,15 +54,16 @@ class ReadingsActivity : AppCompatActivity(){
         println("Activating spa profile!")
         setVesselType("spa")
         reading_page.setBackgroundColor(Color.argb(117,129,0,0))
-        spa_button.setBackgroundColor(Color.TRANSPARENT)
-        spa_button.setTextColor(Color.WHITE)
+        reading_page.setBackgroundColor(ContextCompat.getColor(applicationContext,R.color.poolBackground))
+        spa_button.setBackgroundColor(ContextCompat.getColor(applicationContext,R.color.transparent))
+        spa_button.setTextColor(ContextCompat.getColor(applicationContext,R.color.darkText))
     }
 
     private fun deactivateSpa(){
         println("Deactivating spa profile!")
         spa_button.toggle()
         spa_button.setBackgroundColor(Color.GRAY)
-        spa_button.setTextColor(Color.BLACK)
+        spa_button.setTextColor(Color.WHITE)
     }
 
     private fun profileHandler(profile: String){
@@ -111,19 +105,6 @@ class ReadingsActivity : AppCompatActivity(){
         element.card_entry.requestFocus()
     }
 
-// When to check if a user has entered a number
-    // 1) When card gets activated -----> Check the previous active element
-        // If the previous active element is NOT our default value, check if the previous element's entry has changed
-
-    // 2) When card get deactivated
-
-    // 3) When "next" OR "done" button is pressed for the text entries (done with onAction function)
-
-    // 4) When user clicks between text entries
-
-
-
-
     private fun handleEntry(element: Element) {
         val holder:String = element.card_entry.text.toString()
         if(holder == "."){
@@ -143,10 +124,6 @@ class ReadingsActivity : AppCompatActivity(){
         }
     }
 
-
-
-
-
     // Function ensures that there is only a single card/profile active on the page at one time
     private fun toggleActiveBody(element: Element){
         if(element.card_body.visibility == View.VISIBLE) { // if active card body was selected, we need to reset the page
@@ -165,8 +142,6 @@ class ReadingsActivity : AppCompatActivity(){
         }
         if(activeElement == defaultElement){println("DEFAULT CARD IS ACTIVE; NO CARD SELECTED")} //sanity check
     }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -188,26 +163,22 @@ class ReadingsActivity : AppCompatActivity(){
         pool_button.setOnClickListener{ profileHandler("pool") }
         spa_button.setOnClickListener{ profileHandler("spa" ) }
 
-
-
         ph_card.setOnClickListener(){toggleActiveBody(phElement)}
-        ph_entry.setOnFocusChangeListener{ view, b -> handleEntry(phElement) }
+        ph_entry.setOnFocusChangeListener{ _, _ -> handleEntry(phElement) }
 
         chlor_card.setOnClickListener(){ toggleActiveBody(chlorElement) }
-        chlor_entry.setOnFocusChangeListener{ view, b -> handleEntry(chlorElement) }
+        chlor_entry.setOnFocusChangeListener{ _, _ -> handleEntry(chlorElement) }
 
         alk_card.setOnClickListener(){ toggleActiveBody(alkElement) }
-        alk_entry.setOnFocusChangeListener{ view, b -> handleEntry(alkElement) }
+        alk_entry.setOnFocusChangeListener{ _, _ -> handleEntry(alkElement) }
 
         ca_card.setOnClickListener(){ toggleActiveBody(caElement) }
-        ca_entry.setOnFocusChangeListener{ view, b -> handleEntry(caElement) }
+        ca_entry.setOnFocusChangeListener{ _, _ -> handleEntry(caElement) }
 
         cya_card.setOnClickListener(){ toggleActiveBody(cyaElement) }
-        cya_entry.setOnFocusChangeListener{ view, b -> handleEntry(cyaElement) }
+        cya_entry.setOnFocusChangeListener{ _, _ -> handleEntry(cyaElement) }
 
         phos_card.setOnClickListener(){ toggleActiveBody(phosElement) }
-        phos_entry.setOnFocusChangeListener{ view, b -> handleEntry(phosElement) }
+        phos_entry.setOnFocusChangeListener{ _, _ -> handleEntry(phosElement) }
     }
-
 }
-
