@@ -8,7 +8,7 @@ The entire project will be created through Google's 'Android Studio' Software De
 <ol>
   <li>Have user input a pool's PH, chlorine, alkalinity, calcium hardness, and other readings.</li>
   <li>Implement the taylor watergram wheel (the logic used behind it) for pool diagnostics.</li>
-  <li>Implement the charts in the back of the talor book.</li>
+  <li><s>Implement the charts in the back of the talor book.</li>
   <li>Implement a tool that estimates the volume of a pool based on its shape.</li>
   <li>Create different types of user profiles (this would track the history of a pool's chemistry over time and would also track the treatments performed towards the pool).
       <ul>
