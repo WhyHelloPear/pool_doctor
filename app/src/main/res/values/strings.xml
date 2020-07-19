@@ -1,15 +1,52 @@
 <resources>
-    <string name="app_name">My Pool App</string>
+    <string name="reading_page_description">Welcome to the readings page! There are fields below to enter the chemical readings of
+    the different elements within the water of your pool and/or spa. Once filled, a rating will be given for each reading based on
+    the entry.</string>
+
+    <string name="app_name">Dr.Pool</string>
     <string name="ph_txt">pH</string>
+    <string name="ph_body_txt">Congratulations on opening the pH card! This is where we will store basic info
+    regarding the pH level of a pool or spa.</string>
+
     <string name="reading_entry">N/A</string>
+
+
     <string name="alk_txt">Alkalinity</string>
+    <string name="alk_body_txt">Congratulations on opening the Alkalinity card! This is where we will store basic info
+    regarding the alkalinity level of a pool or spa.</string>
+
     <string name="fc_txt">Free Chlorine</string>
+    <string name="fc_body_txt">Congratulations on opening the Chlorine card! This is where we will store basic info
+    regarding the chlorine level of a pool or spa.</string>
+
     <string name="tc_txt">Total Chlorine</string>
+
     <string name="cya_txt">Cyanuric Acid</string>
+    <string name="cya_body_txt">Congratulations on opening the Cyanuric Acid card! This is where we will store basic info
+    regarding the cyanuric acid level of a pool.</string>
+
     <string name="ca_txt">Calcium Hardness</string>
+    <string name="ca_body_txt">Congratulations on opening the Calcium Hardness card! This is where we will store basic info
+    regarding the calcium hardness level of a pool or spa.</string>
+
+    <string name="phos_txt">Phosphate Level</string>
+    <string name="phos_body_txt">Congratulations on opening the Phosphate card! This is where we will store basic info
+    regarding the phosphate level of a pool.</string>
+
     <string name="tmp_txt">Temperature</string>
+    <string name="tmp_body_txt">Congratulations on opening the Temperature card! This is where we will store basic info
+    regarding the temperature of a pool or spa.</string>
+
     <string name="br_txt">Bromine</string>
     <string name="cc_txt">Combined Chlorine</string>
+
     <string name="pool_txt">Pool</string>
     <string name="spa_txt">Spa</string>
+
+    <string name="reading_page_header_txt">Readings Page</string>
+    <string name="active_profile_text">Current Active Profile:</string>
+    <string name="test_body_text">This is a test; hopefully we can get this to work</string>
+
+    <string name="float_hint">0.0</string>
+    <string name="int_hint">0</string>
 </resources>

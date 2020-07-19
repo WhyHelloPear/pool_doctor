@@ -5,338 +5,635 @@
     android:id="@+id/reading_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/poolBackground"
+    android:focusable="auto"
+    android:focusableInTouchMode="true"
     tools:context=".ReadingsActivity">
 
-    <ToggleButton
-        android:id="@+id/spa_button"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal|end"
-        android:background="#AEFFFFFF"
-        android:checked="@bool/spa_toggle"
-        android:text="@string/spa_txt"
-        android:textAlignment="center"
-        android:textOff="@string/spa_txt"
-        android:textOn="@string/spa_txt"
+    <ScrollView
+        android:id="@+id/scroll_page"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pool_button"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ToggleButton
-        android:id="@+id/pool_button"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_gravity="start"
-        android:background="#AE515151"
-        android:checked="true"
-        android:text="@string/pool_txt"
-        android:textAlignment="center"
-        android:textOff="@string/pool_txt"
-        android:textOn="@string/pool_txt"
-        app:layout_constraintEnd_toStartOf="@+id/spa_button"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/fc_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/fc_entry"
-        android:text="@string/fc_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alk_label" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tc_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/tc_entry"
-        android:text="@string/tc_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fc_label" />
+            <!--  Button Container  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-    <TextView
-        android:id="@+id/cc_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/cc_entry"
-        android:text="@string/cc_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tc_label" />
+                <!--  Pool Button  -->
+                <ToggleButton
+                    android:id="@+id/pool_button"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:text="@string/pool_txt"
+                    android:textOff="@string/pool_txt"
+                    android:textOn="@string/pool_txt" />
+                <!--  Spa Button  -->
+                <ToggleButton
+                    android:id="@+id/spa_button"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|end"
+                    android:layout_weight="1"
+                    android:background="#0000838F"
+                    android:clickable="false"
+                    android:text="@string/spa_txt"
+                    android:textAlignment="center"
+                    android:textOff="@string/spa_txt"
+                    android:textOn="@string/spa_txt" />
 
-    <TextView
-        android:id="@+id/br_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/br_entry"
-        android:text="@string/br_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cc_label" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/ca_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/ca_entry"
-        android:text="@string/ca_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/br_label" />
+            <!--  Page Header Container  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/cya_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/cya_entry"
-        android:text="@string/cya_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ca_label" />
+                <TableRow
+                    android:id="@+id/page_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:clipChildren="false"
+                    android:focusable="auto"
+                    android:layout_marginBottom="10dp">
 
-    <TextView
-        android:id="@+id/tmp_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/tmp_entry"
-        android:text="@string/tmp_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cya_label" />
+                    <TextView
+                        android:id="@+id/page_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reading_page_header_txt"
+                        android:textColor="@color/darkText"
+                        android:textSize="26sp" />
 
-    <TextView
-        android:id="@+id/ph_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:labelFor="@id/ph_entry"
-        android:text="@string/ph_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pool_button" />
+                    <EditText
+                        android:id="@+id/page_entry"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:inputType="none" />
 
-    <TextView
-        android:id="@+id/alk_label"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:labelFor="@id/alk_entry"
-        android:text="@string/alk_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ph_label" />
+                </TableRow>
 
-    <EditText
-        android:id="@+id/ph_entry"
-        style="@android:style/Widget.DeviceDefault.EditText"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:inputType="numberDecimal"
-        android:numeric="decimal"
-        app:layout_constraintStart_toEndOf="@+id/ph_label"
-        app:layout_constraintTop_toBottomOf="@+id/pool_button" />
+                <TextView
+                    android:id="@+id/page_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/reading_page_description"
+                    android:textColor="@color/darkText"
+                    android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/br_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/br_label"
-        app:layout_constraintTop_toBottomOf="@+id/cc_entry" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/tmp_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/tmp_label"
-        app:layout_constraintTop_toBottomOf="@+id/cya_entry" />
+            <!--  Card Container  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/ca_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/ca_label"
-        app:layout_constraintTop_toBottomOf="@+id/br_entry" />
+                <!--  pH Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ph_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/poolOffset"
 
-    <TextView
-        android:id="@+id/cya_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/cya_label"
-        app:layout_constraintTop_toBottomOf="@+id/ca_entry" />
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
 
-    <TextView
-        android:id="@+id/cc_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/cc_label"
-        app:layout_constraintTop_toBottomOf="@+id/tc_entry" />
+                    <!--  pH Card Header  -->
+                    <TableRow
+                        android:id="@+id/ph_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
 
-    <TextView
-        android:id="@+id/tc_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/tc_label"
-        app:layout_constraintTop_toBottomOf="@+id/fc_entry" />
+                        <ImageButton
+                            android:id="@+id/ph_info_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="9dp"
+                            android:background="#00FFFFFF"
+                            app:srcCompat="@android:drawable/ic_menu_info_details" />
 
-    <TextView
-        android:id="@+id/alk_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/alk_label"
-        app:layout_constraintTop_toBottomOf="@+id/ph_entry" />
+                        <TextView
+                            android:id="@+id/ph_label"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/ph_txt"
+                            android:textColor="@color/darkText" />
 
-    <TextView
-        android:id="@+id/fc_entry"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/reading_entry"
-        app:layout_constraintStart_toEndOf="@+id/fc_label"
-        app:layout_constraintTop_toBottomOf="@+id/alk_entry" />
+                        <EditText
+                            android:id="@+id/ph_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:hint="@string/float_hint"
+                            android:inputType="numberDecimal"
+                            android:maxLength="3"
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
 
-    <ProgressBar
-        android:id="@+id/ph_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ph_entry"
-        app:layout_constraintTop_toBottomOf="@+id/spa_button" />
+                        <ProgressBar
+                            android:id="@+id/ph_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+
+                    </TableRow>
+
+                    <!--  pH Card Body  -->
+                    <TableRow
+                        android:id="@+id/ph_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ph_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/ph_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/ph_body_txt" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--  Chlorine Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/chlor_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
+
+                    <!--  Chlorine Header  -->
+                    <TableRow
+                        android:id="@+id/chlor_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <ImageButton
+                            android:id="@+id/chlor_info_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="9dp"
+                            android:background="#00FFFFFF"
+                            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                        <TextView
+                            android:id="@+id/chlor_label"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/fc_txt"
+                            android:textColor="@color/darkText" />
+
+                        <EditText
+                            android:id="@+id/chlor_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="numberDecimal"
+                            android:hint="@string/float_hint"
+                            android:maxLength="3"
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
+
+                        <ProgressBar
+                            android:id="@+id/chlor_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Chlorine Body  -->
+                    <TableRow
+                        android:id="@+id/chlor_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/chlor_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/chlor_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/fc_body_txt" />
+                    </TableRow>
+                </androidx.cardview.widget.CardView>
+
+                <!--  Alkalinity Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/alk_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
+
+                    <!--  Alkalinity Header  -->
+                    <TableRow
+                        android:id="@+id/alk_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <ImageButton
+                            android:id="@+id/alk_info_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="9dp"
+                            android:background="#00FFFFFF"
+                            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                        <TextView
+                            android:id="@+id/alk_label"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/alk_txt"
+                            android:textColor="@color/darkText" />
+
+                        <EditText
+                            android:id="@+id/alk_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="numberDecimal"
+                            android:hint="@string/int_hint"
+                            android:maxLength="4"
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
+
+                        <ProgressBar
+                            android:id="@+id/alk_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Alkalinity Body  -->
+                    <TableRow
+                        android:id="@+id/alk_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/alk_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/alk_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/alk_body_txt" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--  Calcium Hardness Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ca_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
+
+                    <!--  Calcium Hardness Header  -->
+                    <TableRow
+                        android:id="@+id/ca_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <ImageButton
+                            android:id="@+id/ca_info_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="9dp"
+                            android:background="#00FFFFFF"
+                            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                        <TextView
+                            android:id="@+id/ca_label"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/ca_txt"
+                            android:textColor="@color/darkText" />
+
+                        <EditText
+                            android:id="@+id/ca_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="numberDecimal"
+                            android:hint="@string/int_hint"
+                            android:maxLength="4"
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
+
+                        <ProgressBar
+                            android:id="@+id/ca_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Calcium Hardness Body  -->
+                    <TableRow
+                        android:id="@+id/ca_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ca_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/ca_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/ca_body_txt" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--  Cyanuric Acid Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cya_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
+
+                    <!--  Cyanuric Acid Header  -->
+                    <TableRow
+                        android:id="@+id/cya_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <ImageButton
+                            android:id="@+id/cya_info_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="9dp"
+                            android:background="#00FFFFFF"
+                            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                        <TextView
+                            android:id="@+id/cya_label"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/cya_txt"
+                            android:textColor="@color/darkText" />
+
+                        <EditText
+                            android:id="@+id/cya_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="numberDecimal"
+                            android:hint="@string/int_hint"
+                            android:maxLength="4"
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
+
+                        <ProgressBar
+                            android:id="@+id/cya_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Cyanuric Acid Body  -->
+                    <TableRow
+                        android:id="@+id/cya_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/cya_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/cya_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/cya_body_txt" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--  Phosphates Card  -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/phos_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardBackgroundColor="@color/poolOffset"
+
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="25dp"
+                    android:layout_marginStart="-25dp"
+                    app:contentPaddingLeft="25dp">
+
+                    <!--  Phosphates Header  -->
+                    <TableRow
+                        android:id="@+id/phos_card_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <ImageButton
+                            android:id="@+id/phos_info_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="9dp"
+                            android:background="#00FFFFFF"
+                            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                        <TextView
+                            android:id="@+id/phos_label"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/phos_txt"
+                            android:textColor="@color/darkText" />
+
+                        <EditText
+                            android:id="@+id/phos_entry"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="10dp"
+                            android:inputType="numberDecimal"
+                            android:hint="@string/int_hint"
+                            android:maxLength="4"
+                            android:textAlignment="center"
+                            android:textColor="@color/darkText" />
+
+                        <ProgressBar
+                            android:id="@+id/phos_scale"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:max="1"
+                            android:progress="0" />
+                    </TableRow>
+
+                    <!--  Phosphates Body  -->
+                    <TableRow
+                        android:id="@+id/phos_info_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/phos_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_launcher_foreground"
+                            tools:ignore="VectorDrawableCompat" />
+
+                        <TextView
+                            android:id="@+id/phos_body_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/phos_body_txt" />
+                    </TableRow>
+
+                </androidx.cardview.widget.CardView>
 
 
-    <ProgressBar
-        android:id="@+id/alk_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/alk_entry"
-        app:layout_constraintTop_toBottomOf="@+id/ph_scale" />
+            </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/fc_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fc_entry"
-        app:layout_constraintTop_toBottomOf="@+id/alk_scale" />
+        </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/tc_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tc_entry"
-        app:layout_constraintTop_toBottomOf="@+id/fc_scale" />
 
-    <ProgressBar
-        android:id="@+id/tmp_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tmp_entry"
-        app:layout_constraintTop_toBottomOf="@+id/cya_scale" />
+    </ScrollView>
 
-    <ProgressBar
-        android:id="@+id/cc_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cc_entry"
-        app:layout_constraintTop_toBottomOf="@+id/tc_scale" />
-
-    <ProgressBar
-        android:id="@+id/br_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/br_entry"
-        app:layout_constraintTop_toBottomOf="@+id/cc_scale" />
-
-    <ProgressBar
-        android:id="@+id/ca_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ca_entry"
-        app:layout_constraintTop_toBottomOf="@+id/br_scale" />
-
-    <ProgressBar
-        android:id="@+id/cya_scale"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cya_entry"
-        app:layout_constraintTop_toBottomOf="@+id/ca_scale" />
 
     <!--    </ScrollView>-->
 

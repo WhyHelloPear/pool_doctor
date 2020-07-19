@@ -1,4 +1,4 @@
-# Pool Doctor
+# Dr.Pool
 Summer project for an app (currently intended for android only) that helps with balancing the chemical balance of pools based off of their current chem readings.
 
 The entire project will be created through Google's 'Android Studio' Software Developement Kit (SDK). The App will run on Android 4.3 (Jellbean API 18) with the Kotlin programming language. All project files are stored in the 'project' folder of this repository.
@@ -6,7 +6,7 @@ The entire project will be created through Google's 'Android Studio' Software De
 
 # Intended Features
 <ol>
-  <li>Have user input a pool's PH, chlorine, alkalinity, calcium hardness, and other readings.</li>
+  <li><s>Have user input a pool's PH, chlorine, alkalinity, calcium hardness, and other readings.</s> [DONE]</li>
   <li>Implement the taylor watergram wheel (the logic used behind it) for pool diagnostics.</li>
   <li>Implement the charts in the back of the talor book.</li>
   <li>Implement a tool that estimates the volume of a pool based on its shape.</li>
