@@ -6,7 +6,7 @@ The entire project will be created through Google's 'Android Studio' Software De
 
 # Intended Features
 <ol>
-  <li><s>Have user input a pool's PH, chlorine, alkalinity, calcium hardness, and other readings.</s>[DONE]</li>
+  <li><s>Have user input a pool's PH, chlorine, alkalinity, calcium hardness, and other readings.</s> <br>[DONE]</li>
   <li>Implement the taylor watergram wheel (the logic used behind it) for pool diagnostics.</li>
   <li>Implement the charts in the back of the talor book.</li>
   <li>Implement a tool that estimates the volume of a pool based on its shape.</li>
