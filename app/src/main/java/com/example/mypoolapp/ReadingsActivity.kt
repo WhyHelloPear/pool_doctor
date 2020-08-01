@@ -2,21 +2,35 @@ package com.example.mypoolapp
 
 import android.app.Activity
 import android.graphics.Color
+import android.graphics.drawable.Animatable
+import android.graphics.drawable.AnimatedVectorDrawable
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.VectorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ReadingsActivity : AppCompatActivity(){
 
-    data class Element(val name: String,val card: View, val card_body: View, val card_entry: EditText, val full_range: List<Float>, val ideal_range: List<Float>) {}
+    data class Element(val name: String,val card: View, val card_body: View, val card_entry: EditText, val full_range: List<Float>, val ideal_range: List<Float>, val level_icon: ImageView) {}
 
     private lateinit var vesselType:String
     private lateinit var activeElement:Element
     private lateinit var defaultElement:Element
+
+    private lateinit var phAnim: AnimatedVectorDrawable
+    private lateinit var chlorAnim: AnimatedVectorDrawable
+    private lateinit var alkAnim: AnimatedVectorDrawable
+    private lateinit var caAnim: AnimatedVectorDrawable
+    private lateinit var cyaAnim: AnimatedVectorDrawable
+    private lateinit var phosAnim: AnimatedVectorDrawable
 
     private fun getIMM(): InputMethodManager{ return getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager }
 
@@ -143,18 +157,38 @@ class ReadingsActivity : AppCompatActivity(){
         if(activeElement == defaultElement){println("DEFAULT CARD IS ACTIVE; NO CARD SELECTED")} //sanity check
     }
 
+
+//    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+//    private fun setAnimations(){
+//        check.apply{
+//            setBackgroundResource(R.drawable.avd_anim)
+//            phAnim = background as AnimatedVectorDrawable
+//        }
+//
+//        check2.apply{
+//            setBackgroundResource(R.drawable.avd_anim)
+//            chlorAnim = background as AnimatedVectorDrawable
+//        }
+//    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val phElement:Element = Element("ph", ph_card, ph_info_body, ph_entry, listOf(7f,8f), listOf(7.4f,7.6f))
-        val chlorElement:Element = Element("chlor", chlor_card, chlor_info_body, chlor_entry, listOf(0f,10f), listOf(7.4f,7.6f))
-        val alkElement:Element = Element("alk", alk_card, alk_info_body, alk_entry, listOf(0f,999f), listOf(80f,120f))
-        val caElement:Element = Element("ca", ca_card, ca_info_body, ca_entry, listOf(0f,999f), listOf(200f,400f))
-        val cyaElement:Element = Element("cya", cya_card, cya_info_body, cya_entry, listOf(0f,400f), listOf(30f,80f))
-        val phosElement:Element = Element("phos", phos_card, phos_info_body, phos_entry, listOf(0f,999f), listOf(0f,0f))
+//        check.setOnClickListener({ phAnim.start() })
+//        check2.setOnClickListener({ chlorAnim.start() })
 
-        defaultElement = Element("default", page_header, page_body, page_entry, listOf(0f,0f), listOf(0f,0f))
+
+
+        val phElement:Element = Element("ph", ph_card, ph_info_body, ph_entry, listOf(7f,8f), listOf(7.4f,7.6f), ph_level_icon)
+        val chlorElement:Element = Element("chlor", chlor_card, chlor_info_body, chlor_entry, listOf(0f,10f), listOf(7.4f,7.6f), chlor_level_icon)
+        val alkElement:Element = Element("alk", alk_card, alk_info_body, alk_entry, listOf(0f,999f), listOf(80f,120f), alk_level_icon)
+        val caElement:Element = Element("ca", ca_card, ca_info_body, ca_entry, listOf(0f,999f), listOf(200f,400f), ca_level_icon)
+        val cyaElement:Element = Element("cya", cya_card, cya_info_body, cya_entry, listOf(0f,400f), listOf(30f,80f), cya_level_icon)
+        val phosElement:Element = Element("phos", phos_card, phos_info_body, phos_entry, listOf(0f,999f), listOf(0f,0f), phos_level_icon)
+
+        defaultElement = Element("default", page_header, page_body, page_entry, listOf(0f,0f), listOf(0f,0f), page_level_icon)
         activeElement = defaultElement
 
         activatePool() //set page with pool profile selected by default
