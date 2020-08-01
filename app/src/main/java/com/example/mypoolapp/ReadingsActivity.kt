@@ -16,7 +16,9 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.postDelayed
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class ReadingsActivity : AppCompatActivity(){
 
@@ -122,7 +124,10 @@ class ReadingsActivity : AppCompatActivity(){
 
     private fun handleEntry(element: Element) {
         val holder:String = element.card_entry.text.toString()
-        if(holder == "."){
+        if(holder == "." || holder == ""){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                handleAnimationTransitions(element, element.level, "")
+            }
             element.card_entry.setText("")
         }
         else if(holder != ""){
@@ -134,9 +139,11 @@ class ReadingsActivity : AppCompatActivity(){
             when(entryValue){
                 in element.ideal_range[0]..element.ideal_range[1] -> {
                     println("${element.name} level of $entryValue is within the ideal range of ${element.ideal_range}")
+
+
                     if(element.level != "ideal") {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //if phone has version that allows this animation
-                            activateAnimation(element, "ideal")
+                            handleAnimationTransitions(element, element.level, "ideal")
                         }
                         else{
                             println("User's device does NOT ALLOW animation")
@@ -183,20 +190,52 @@ class ReadingsActivity : AppCompatActivity(){
         if(activeElement == defaultElement){println("DEFAULT CARD IS ACTIVE; NO CARD SELECTED")} //sanity check
     }
 
+
+    // VERY IMPORTANT SHIT
+    // THIS DELAYS TIME BETWEEN ANIMATIONS SO THEY DON'T OVERLAP
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun handleAnimationTransitions(element: Element, startingLevel: String, finalLevel: String){
+        activateClosingAnimation(element, startingLevel)
+        element.level_icon.postDelayed(Runnable() {
+        run() {
+            activateOpeningAnimation(element, finalLevel)
+        }
+    }, 500)
+
+    }
+
     
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun activateAnimation(element: Element, level: String){
+    private fun activateOpeningAnimation(element: Element, level: String){
         when(level){
             "ideal" -> {
                 element.level_icon.apply{
-                    setBackgroundResource(R.drawable.ideal_animation)
+                    setBackgroundResource(R.drawable.ideal_opening_animation)
                     val animation = background as AnimatedVectorDrawable
                     animation.start()
                 }
+                element.level = level
             }
             else -> println("Haven't reached this point yet")
         }
     }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun activateClosingAnimation(element: Element, level: String){
+        when(level){
+            "ideal" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.ideal_closing_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+                element.level = ""
+            }
+            else -> println("Haven't reached this point yet")
+        }
+    }
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
