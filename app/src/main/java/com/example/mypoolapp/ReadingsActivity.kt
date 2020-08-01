@@ -6,6 +6,7 @@ import android.graphics.drawable.Animatable
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.graphics.drawable.AnimationDrawable
 import android.graphics.drawable.VectorDrawable
+import android.media.Image
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class ReadingsActivity : AppCompatActivity(){
 
-    data class Element(val name: String,val card: View, val card_body: View, val card_entry: EditText, val full_range: List<Float>, val ideal_range: List<Float>, val level_icon: ImageView) {}
+    data class Element(val name: String,val card: View, val card_body: View, val card_entry: EditText, val full_range: List<Float>, val ideal_range: List<Float>, val level_icon: ImageView, var level: String)
 
     private lateinit var vesselType:String
     private lateinit var activeElement:Element
@@ -129,12 +130,37 @@ class ReadingsActivity : AppCompatActivity(){
             if("≤" in holder){ entryValue = element.full_range[0] }
             else if("≥" in holder){ entryValue = element.full_range[1] }
             else{ entryValue = holder.toFloat() }
+
+            when(entryValue){
+                in element.ideal_range[0]..element.ideal_range[1] -> {
+                    println("${element.name} level of $entryValue is within the ideal range of ${element.ideal_range}")
+                    if(element.level != "ideal") {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //if phone has version that allows this animation
+                            activateAnimation(element, "ideal")
+                        }
+                        else{
+                            println("User's device does NOT ALLOW animation")
+                            //we need to insert static image of the icon in a simpler manner
+                        }
+                    }
+                    else{ println("Animation NOT triggered!")}
+                    element.level = "ideal"
+                }
+            }
+
+            //if entry is larger than element's max value
             if(entryValue >= element.full_range[1]){
                 element.card_entry.setText("≥${element.full_range[1].toInt()}")
+                println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
             }
+
+            //if entry is less than element's min value
             else if(entryValue <= element.full_range[0]){
                 element.card_entry.setText("≤${element.full_range[0].toInt()}")
+                println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
             }
+
+
         }
     }
 
@@ -157,38 +183,34 @@ class ReadingsActivity : AppCompatActivity(){
         if(activeElement == defaultElement){println("DEFAULT CARD IS ACTIVE; NO CARD SELECTED")} //sanity check
     }
 
-
-//    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-//    private fun setAnimations(){
-//        check.apply{
-//            setBackgroundResource(R.drawable.avd_anim)
-//            phAnim = background as AnimatedVectorDrawable
-//        }
-//
-//        check2.apply{
-//            setBackgroundResource(R.drawable.avd_anim)
-//            chlorAnim = background as AnimatedVectorDrawable
-//        }
-//    }
-
+    
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun activateAnimation(element: Element, level: String){
+        when(level){
+            "ideal" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.ideal_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
+            else -> println("Haven't reached this point yet")
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        check.setOnClickListener({ phAnim.start() })
-//        check2.setOnClickListener({ chlorAnim.start() })
+        val phElement:Element = Element("ph", ph_card, ph_info_body, ph_entry, listOf(7f,8f), listOf(7.4f,7.6f), ph_level_icon,"")
+        val chlorElement:Element = Element("chlor", chlor_card, chlor_info_body, chlor_entry, listOf(0f,10f), listOf(2f,4f), chlor_level_icon,"")
+        val alkElement:Element = Element("alk", alk_card, alk_info_body, alk_entry, listOf(0f,999f), listOf(80f,120f), alk_level_icon,"")
+        val caElement:Element = Element("ca", ca_card, ca_info_body, ca_entry, listOf(0f,999f), listOf(200f,400f), ca_level_icon,"")
+        val cyaElement:Element = Element("cya", cya_card, cya_info_body, cya_entry, listOf(0f,400f), listOf(30f,80f), cya_level_icon,"")
+        val phosElement:Element = Element("phos", phos_card, phos_info_body, phos_entry, listOf(0f,999f), listOf(0f,0f), phos_level_icon,"")
 
-
-
-        val phElement:Element = Element("ph", ph_card, ph_info_body, ph_entry, listOf(7f,8f), listOf(7.4f,7.6f), ph_level_icon)
-        val chlorElement:Element = Element("chlor", chlor_card, chlor_info_body, chlor_entry, listOf(0f,10f), listOf(7.4f,7.6f), chlor_level_icon)
-        val alkElement:Element = Element("alk", alk_card, alk_info_body, alk_entry, listOf(0f,999f), listOf(80f,120f), alk_level_icon)
-        val caElement:Element = Element("ca", ca_card, ca_info_body, ca_entry, listOf(0f,999f), listOf(200f,400f), ca_level_icon)
-        val cyaElement:Element = Element("cya", cya_card, cya_info_body, cya_entry, listOf(0f,400f), listOf(30f,80f), cya_level_icon)
-        val phosElement:Element = Element("phos", phos_card, phos_info_body, phos_entry, listOf(0f,999f), listOf(0f,0f), phos_level_icon)
-
-        defaultElement = Element("default", page_header, page_body, page_entry, listOf(0f,0f), listOf(0f,0f), page_level_icon)
+        defaultElement = Element("default", page_header, page_body, page_entry, listOf(0f,0f), listOf(0f,0f), page_level_icon,"")
         activeElement = defaultElement
 
         activatePool() //set page with pool profile selected by default
