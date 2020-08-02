@@ -139,8 +139,6 @@ class ReadingsActivity : AppCompatActivity(){
             when(entryValue){
                 in element.ideal_range[0]..element.ideal_range[1] -> {
                     println("${element.name} level of $entryValue is within the ideal range of ${element.ideal_range}")
-
-
                     if(element.level != "ideal") {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //if phone has version that allows this animation
                             handleAnimationTransitions(element, element.level, "ideal")
@@ -151,7 +149,19 @@ class ReadingsActivity : AppCompatActivity(){
                         }
                     }
                     else{ println("Animation NOT triggered!")}
-                    element.level = "ideal"
+                }
+                in element.ideal_range[1]..element.full_range[1] -> {
+                    println("${element.name} level of $entryValue is ABOVE the ideal range of ${element.ideal_range}")
+                    if(element.level != "high") {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //if phone has version that allows this animation
+                            handleAnimationTransitions(element, element.level, "high")
+                        }
+                        else{
+                            println("User's device does NOT ALLOW animation")
+                            //we need to insert static image of the icon in a simpler manner
+                        }
+                    }
+                    else{ println("Animation NOT triggered!")}
                 }
             }
 
@@ -197,11 +207,11 @@ class ReadingsActivity : AppCompatActivity(){
     private fun handleAnimationTransitions(element: Element, startingLevel: String, finalLevel: String){
         activateClosingAnimation(element, startingLevel)
         element.level_icon.postDelayed(Runnable() {
-        run() {
-            activateOpeningAnimation(element, finalLevel)
-        }
-    }, 500)
-
+            run() {
+                activateOpeningAnimation(element, finalLevel)
+            }
+        }, 500)
+        element.level = finalLevel
     }
 
     
@@ -214,10 +224,17 @@ class ReadingsActivity : AppCompatActivity(){
                     val animation = background as AnimatedVectorDrawable
                     animation.start()
                 }
-                element.level = level
+            }
+            "high" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.high_opening_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
             }
             else -> println("Haven't reached this point yet")
         }
+        element.level = level
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -226,6 +243,14 @@ class ReadingsActivity : AppCompatActivity(){
             "ideal" -> {
                 element.level_icon.apply{
                     setBackgroundResource(R.drawable.ideal_closing_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+                element.level = ""
+            }
+            "high" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.high_closing_animation)
                     val animation = background as AnimatedVectorDrawable
                     animation.start()
                 }
