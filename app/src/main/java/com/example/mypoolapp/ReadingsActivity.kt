@@ -2,21 +2,38 @@ package com.example.mypoolapp
 
 import android.app.Activity
 import android.graphics.Color
+import android.graphics.drawable.Animatable
+import android.graphics.drawable.AnimatedVectorDrawable
+import android.graphics.drawable.AnimationDrawable
+import android.graphics.drawable.VectorDrawable
+import android.media.Image
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.postDelayed
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class ReadingsActivity : AppCompatActivity(){
 
-    data class Element(val name: String,val card: View, val card_body: View, val card_entry: EditText, val full_range: List<Float>, val ideal_range: List<Float>) {}
+    data class Element(val name: String,val card: View, val card_body: View, val card_entry: EditText, val full_range: List<Float>, val ideal_range: List<Float>, val level_icon: ImageView, var level: String)
 
     private lateinit var vesselType:String
     private lateinit var activeElement:Element
     private lateinit var defaultElement:Element
+
+    private lateinit var phAnim: AnimatedVectorDrawable
+    private lateinit var chlorAnim: AnimatedVectorDrawable
+    private lateinit var alkAnim: AnimatedVectorDrawable
+    private lateinit var caAnim: AnimatedVectorDrawable
+    private lateinit var cyaAnim: AnimatedVectorDrawable
+    private lateinit var phosAnim: AnimatedVectorDrawable
 
     private fun getIMM(): InputMethodManager{ return getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager }
 
@@ -105,24 +122,63 @@ class ReadingsActivity : AppCompatActivity(){
         element.card_entry.requestFocus()
     }
 
+    private fun versionAnimation(element: Element, finalLevel: String){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //if phone has version that allows this animation
+            handleAnimationTransitions(element, element.level, finalLevel)
+        }
+        else{
+            println("User's device does NOT ALLOW animation")
+            //we need to insert static image of the icon in a simpler manner
+        }
+    }
+
     private fun handleEntry(element: Element) {
         val holder:String = element.card_entry.text.toString()
-        if(holder == "."){
+        if(holder == "." || holder == ""){
             element.card_entry.setText("")
+            versionAnimation(element, "")
         }
         else if(holder != ""){
             var entryValue:Float = 0f
             if("≤" in holder){ entryValue = element.full_range[0] }
             else if("≥" in holder){ entryValue = element.full_range[1] }
             else{ entryValue = holder.toFloat() }
+
+            //if entry is larger than element's max value
             if(entryValue >= element.full_range[1]){
                 element.card_entry.setText("≥${element.full_range[1].toInt()}")
+                entryValue = element.full_range[1]
+                println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
             }
+            //if entry is less than element's min value
             else if(entryValue <= element.full_range[0]){
                 element.card_entry.setText("≤${element.full_range[0].toInt()}")
+                entryValue = element.full_range[0]
+                println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
+            }
+
+            when(entryValue){
+                in element.ideal_range[0]..element.ideal_range[1] -> {
+                    println("${element.name} level of $entryValue is within the ideal range of ${element.ideal_range}")
+                    if(element.level != "ideal") { versionAnimation(element, "ideal") }
+                    else{ println("Animation NOT triggered!")}
+                }
+
+                in element.full_range[0]..element.ideal_range[0] -> {
+                    println("${element.name} level of $entryValue is BELOW the ideal range of ${element.ideal_range}")
+                    if(element.level != "low") { versionAnimation(element, "low") }
+                    else{ println("Animation NOT triggered!")}
+                }
+
+                in element.ideal_range[1]..element.full_range[1] -> {
+                    println("${element.name} level of $entryValue is ABOVE the ideal range of ${element.ideal_range}")
+                    if(element.level != "high") { versionAnimation(element, "high") }
+                    else{ println("Animation NOT triggered!")}
+                }
             }
         }
     }
+
 
     // Function ensures that there is only a single card/profile active on the page at one time
     private fun toggleActiveBody(element: Element){
@@ -143,18 +199,92 @@ class ReadingsActivity : AppCompatActivity(){
         if(activeElement == defaultElement){println("DEFAULT CARD IS ACTIVE; NO CARD SELECTED")} //sanity check
     }
 
+
+    // VERY IMPORTANT SHIT
+    // THIS DELAYS TIME BETWEEN ANIMATIONS SO THEY DON'T OVERLAP
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun handleAnimationTransitions(element: Element, startingLevel: String, finalLevel: String){
+        activateClosingAnimation(element, startingLevel)
+        if(startingLevel != "") {
+            element.level_icon.postDelayed(Runnable() {
+                run() {
+                    activateOpeningAnimation(element, finalLevel)
+                }
+            }, 850)
+        }
+        else{ activateOpeningAnimation(element, finalLevel) }
+        element.level = finalLevel
+    }
+
+    
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun activateOpeningAnimation(element: Element, level: String){
+        when(level){
+            "ideal" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.ideal_opening_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
+            "high" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.high_opening_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
+            "low" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.low_opening_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
+        }
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun activateClosingAnimation(element: Element, level: String){
+        when(level){
+            "ideal" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.ideal_closing_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
+            "high" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.high_closing_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
+            "low" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.low_closing_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val phElement:Element = Element("ph", ph_card, ph_info_body, ph_entry, listOf(7f,8f), listOf(7.4f,7.6f))
-        val chlorElement:Element = Element("chlor", chlor_card, chlor_info_body, chlor_entry, listOf(0f,10f), listOf(7.4f,7.6f))
-        val alkElement:Element = Element("alk", alk_card, alk_info_body, alk_entry, listOf(0f,999f), listOf(80f,120f))
-        val caElement:Element = Element("ca", ca_card, ca_info_body, ca_entry, listOf(0f,999f), listOf(200f,400f))
-        val cyaElement:Element = Element("cya", cya_card, cya_info_body, cya_entry, listOf(0f,400f), listOf(30f,80f))
-        val phosElement:Element = Element("phos", phos_card, phos_info_body, phos_entry, listOf(0f,999f), listOf(0f,0f))
+        val phElement:Element = Element("ph", ph_card, ph_info_body, ph_entry, listOf(7f,8f), listOf(7.4f,7.6f), ph_level_icon,"")
+        val chlorElement:Element = Element("chlor", chlor_card, chlor_info_body, chlor_entry, listOf(0f,10f), listOf(2f,4f), chlor_level_icon,"")
+        val alkElement:Element = Element("alk", alk_card, alk_info_body, alk_entry, listOf(0f,999f), listOf(80f,120f), alk_level_icon,"")
+        val caElement:Element = Element("ca", ca_card, ca_info_body, ca_entry, listOf(0f,999f), listOf(200f,400f), ca_level_icon,"")
+        val cyaElement:Element = Element("cya", cya_card, cya_info_body, cya_entry, listOf(0f,400f), listOf(30f,80f), cya_level_icon,"")
+        val phosElement:Element = Element("phos", phos_card, phos_info_body, phos_entry, listOf(0f,999f), listOf(0f,0f), phos_level_icon,"")
 
-        defaultElement = Element("default", page_header, page_body, page_entry, listOf(0f,0f), listOf(0f,0f))
+        defaultElement = Element("default", page_header, page_body, page_entry, listOf(0f,0f), listOf(0f,0f), page_level_icon,"")
         activeElement = defaultElement
 
         activatePool() //set page with pool profile selected by default

@@ -91,6 +91,10 @@
                         android:layout_height="0dp"
                         android:inputType="none" />
 
+                    <ImageView
+                        android:id="@+id/page_level_icon"
+                        android:visibility="gone" />
+
                 </TableRow>
 
                 <TextView
@@ -153,7 +157,7 @@
                             android:id="@+id/ph_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:hint="@string/float_hint"
                             android:inputType="numberDecimal"
@@ -161,14 +165,12 @@
                             android:textAlignment="center"
                             android:textColor="@color/darkText" />
 
-                        <ProgressBar
-                            android:id="@+id/ph_scale"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:max="1"
-                            android:progress="0" />
+                        <ImageView
+                            android:id="@+id/ph_level_icon"
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp" />
 
                     </TableRow>
 
@@ -240,7 +242,7 @@
                             android:id="@+id/chlor_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/float_hint"
@@ -248,14 +250,12 @@
                             android:textAlignment="center"
                             android:textColor="@color/darkText" />
 
-                        <ProgressBar
-                            android:id="@+id/chlor_scale"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:max="1"
-                            android:progress="0" />
+                        <ImageView
+                            android:id="@+id/chlor_level_icon"
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Chlorine Body  -->
@@ -325,7 +325,7 @@
                             android:id="@+id/alk_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/int_hint"
@@ -333,14 +333,12 @@
                             android:textAlignment="center"
                             android:textColor="@color/darkText" />
 
-                        <ProgressBar
-                            android:id="@+id/alk_scale"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:max="1"
-                            android:progress="0" />
+                        <ImageView
+                            android:id="@+id/alk_level_icon"
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Alkalinity Body  -->
@@ -411,7 +409,7 @@
                             android:id="@+id/ca_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/int_hint"
@@ -419,14 +417,12 @@
                             android:textAlignment="center"
                             android:textColor="@color/darkText" />
 
-                        <ProgressBar
-                            android:id="@+id/ca_scale"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:max="1"
-                            android:progress="0" />
+                        <ImageView
+                            android:id="@+id/ca_level_icon"
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Calcium Hardness Body  -->
@@ -497,7 +493,7 @@
                             android:id="@+id/cya_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/int_hint"
@@ -505,14 +501,12 @@
                             android:textAlignment="center"
                             android:textColor="@color/darkText" />
 
-                        <ProgressBar
-                            android:id="@+id/cya_scale"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:max="1"
-                            android:progress="0" />
+                        <ImageView
+                            android:id="@+id/cya_level_icon"
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Cyanuric Acid Body  -->
@@ -583,7 +577,7 @@
                             android:id="@+id/phos_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/int_hint"
@@ -591,14 +585,12 @@
                             android:textAlignment="center"
                             android:textColor="@color/darkText" />
 
-                        <ProgressBar
-                            android:id="@+id/phos_scale"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:max="1"
-                            android:progress="0" />
+                        <ImageView
+                            android:id="@+id/phos_level_icon"
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Phosphates Body  -->
