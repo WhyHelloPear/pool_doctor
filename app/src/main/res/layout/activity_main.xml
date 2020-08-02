@@ -157,7 +157,7 @@
                             android:id="@+id/ph_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:hint="@string/float_hint"
                             android:inputType="numberDecimal"
@@ -169,7 +169,8 @@
                             android:id="@+id/ph_level_icon"
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp" />
 
                     </TableRow>
 
@@ -241,7 +242,7 @@
                             android:id="@+id/chlor_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/float_hint"
@@ -253,7 +254,8 @@
                             android:id="@+id/chlor_level_icon"
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Chlorine Body  -->
@@ -323,7 +325,7 @@
                             android:id="@+id/alk_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/int_hint"
@@ -335,7 +337,8 @@
                             android:id="@+id/alk_level_icon"
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Alkalinity Body  -->
@@ -406,7 +409,7 @@
                             android:id="@+id/ca_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/int_hint"
@@ -418,7 +421,8 @@
                             android:id="@+id/ca_level_icon"
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Calcium Hardness Body  -->
@@ -489,7 +493,7 @@
                             android:id="@+id/cya_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/int_hint"
@@ -501,7 +505,8 @@
                             android:id="@+id/cya_level_icon"
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Cyanuric Acid Body  -->
@@ -572,7 +577,7 @@
                             android:id="@+id/phos_entry"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="0dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:inputType="numberDecimal"
                             android:hint="@string/int_hint"
@@ -584,7 +589,8 @@
                             android:id="@+id/phos_level_icon"
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:layout_marginStart="20dp"/>
                     </TableRow>
 
                     <!--  Phosphates Body  -->

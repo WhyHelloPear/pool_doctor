@@ -144,6 +144,19 @@ class ReadingsActivity : AppCompatActivity(){
             else if("≥" in holder){ entryValue = element.full_range[1] }
             else{ entryValue = holder.toFloat() }
 
+            //if entry is larger than element's max value
+            if(entryValue >= element.full_range[1]){
+                element.card_entry.setText("≥${element.full_range[1].toInt()}")
+                entryValue = element.full_range[1]
+                println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
+            }
+            //if entry is less than element's min value
+            else if(entryValue <= element.full_range[0]){
+                element.card_entry.setText("≤${element.full_range[0].toInt()}")
+                entryValue = element.full_range[0]
+                println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
+            }
+
             when(entryValue){
                 in element.ideal_range[0]..element.ideal_range[1] -> {
                     println("${element.name} level of $entryValue is within the ideal range of ${element.ideal_range}")
@@ -163,18 +176,9 @@ class ReadingsActivity : AppCompatActivity(){
                     else{ println("Animation NOT triggered!")}
                 }
             }
-            //if entry is larger than element's max value
-            if(entryValue >= element.full_range[1]){
-                element.card_entry.setText("≥${element.full_range[1].toInt()}")
-                println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
-            }
-            //if entry is less than element's min value
-            else if(entryValue <= element.full_range[0]){
-                element.card_entry.setText("≤${element.full_range[0].toInt()}")
-                println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
-            }
         }
     }
+
 
     // Function ensures that there is only a single card/profile active on the page at one time
     private fun toggleActiveBody(element: Element){
@@ -240,6 +244,7 @@ class ReadingsActivity : AppCompatActivity(){
         }
     }
 
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun activateClosingAnimation(element: Element, level: String){
         when(level){
@@ -266,8 +271,6 @@ class ReadingsActivity : AppCompatActivity(){
             }
         }
     }
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

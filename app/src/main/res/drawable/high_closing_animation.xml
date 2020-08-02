@@ -53,7 +53,7 @@
                 android:propertyName="trimPathEnd"
                 android:duration="500"
                 android:valueFrom="1"
-                android:valueTo="-0.2"
+                android:valueTo="0.1"
                 android:valueType="floatType"
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>
         </aapt:attr>
