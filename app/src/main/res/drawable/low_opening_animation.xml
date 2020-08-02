@@ -11,59 +11,58 @@
             <group android:name="wrapper_1">
                 <clip-path
                     android:name="clippath3380_1"
-                    android:pathData="M 190.296 276.596 L 190.296 105 L 135.737 105 C 134.828 109.347 133.876 113.689 132.677 117.964 C 130.988 123.986 127.412 126.805 124.158 126.972 C 122.788 128.636 121.059 129.472 119.336 129.514 C 117.989 129.547 116.646 129.094 115.482 128.175 C 114.068 130.797 111.921 132.083 109.764 132.113 C 105.825 132.167 101.857 128.034 102.274 120.206 C 102.304 119.632 102.339 119.058 102.373 118.484 C 101.178 121.16 99.685 123.05 98.109 124.262 C 97.218 126.681 95.637 128.241 93.839 128.872 C 92.776 130.813 90.994 131.93 88.968 131.977 C 86.019 132.046 82.562 129.852 80.083 124.649 C 78.122 120.535 76.689 116.202 74.939 112.002 C 71.997 104.94 74.792 112.041 72.009 105.481 C 71.942 105.321 71.877 105.16 71.811 105 L 20 105 L 20 276.596 Z"/>
+                    android:pathData="M 20 105 L 20 276.596 L 74.559 276.596 C 75.468 272.249 76.42 267.907 77.619 263.632 C 79.308 257.61 82.884 254.791 86.138 254.624 C 87.508 252.96 89.237 252.124 90.96 252.082 C 92.307 252.049 93.65 252.502 94.814 253.421 C 96.228 250.799 98.375 249.513 100.532 249.483 C 104.471 249.429 108.439 253.562 108.022 261.39 C 107.992 261.964 107.957 262.538 107.923 263.112 C 109.118 260.436 110.611 258.546 112.187 257.334 C 113.078 254.915 114.659 253.355 116.457 252.724 C 117.52 250.783 119.302 249.666 121.328 249.619 C 124.277 249.55 127.734 251.744 130.213 256.947 C 132.174 261.061 133.607 265.394 135.357 269.594 C 138.299 276.656 135.504 269.555 138.287 276.115 C 138.354 276.275 138.419 276.436 138.485 276.596 L 190.296 276.596 L 190.296 105 Z"/>
                 <path
-                    android:name="path_7"
-                    android:pathData="M 105.148 271.98 C 122.152 271.98 138.727 266.551 152.484 256.476 C 166.24 246.4 176.484 232.187 181.739 215.885 C 186.993 199.582 186.993 182.014 181.739 165.711 C 176.484 149.409 166.24 135.196 152.484 125.12 C 138.727 115.045 122.152 109.616 105.148 109.616 C 88.144 109.616 71.569 115.045 57.812 125.12 C 44.056 135.196 33.812 149.409 28.557 165.711 C 23.303 182.014 23.303 199.582 28.557 215.885 C 33.812 232.187 44.056 246.4 57.812 256.476 C 71.569 266.551 88.144 271.98 105.148 271.98 Z"
+                    android:name="path_1"
+                    android:pathData="M 105.148 109.616 C 88.144 109.616 71.569 115.045 57.812 125.12 C 44.056 135.196 33.812 149.409 28.557 165.711 C 23.303 182.014 23.303 199.582 28.557 215.885 C 33.812 232.187 44.056 246.4 57.812 256.476 C 71.569 266.551 88.144 271.98 105.148 271.98 C 122.152 271.98 138.727 266.551 152.484 256.476 C 166.24 246.4 176.484 232.187 181.739 215.885 C 186.993 199.582 186.993 182.014 181.739 165.711 C 176.484 149.409 166.24 135.196 152.484 125.12 C 138.727 115.045 122.152 109.616 105.148 109.616 Z"
                     android:strokeColor="#01b894"
                     android:strokeWidth="9.23153"
-                    android:trimPathEnd="0"
-                    android:trimPathOffset="0.56"/>
+                    android:trimPathOffset="0.5"/>
             </group>
             <path
-                android:name="path_9"
-                android:pathData="M 85.332 152.018 L 105.81 116.548 L 126.384 152.182"
+                android:name="path_3"
+                android:pathData="M 126.384 232.601 L 105.905 268.071 L 85.332 232.437"
                 android:strokeColor="#de91a3"
                 android:strokeWidth="23.932"
                 android:trimPathEnd="0"/>
             <path
-                android:name="path_10"
-                android:pathData="M 105.888 112.964 L 105.888 211.073"
+                android:name="path_4"
+                android:pathData="M 105.888 173.818 L 105.888 271.928"
                 android:strokeColor="#de91a3"
                 android:strokeWidth="20.394"
-                android:trimPathStart="1"/>
+                android:trimPathEnd="0"/>
             <path
-                android:name="path_11"
-                android:pathData="M 131.658 192.947 L 147.83 164.935 L 164.078 193.076 M 45.814 193.036 L 61.987 165.025 L 78.234 193.166"
+                android:name="path_6"
+                android:pathData="M 164.607 192.053 L 148.434 220.064 L 132.187 191.923 M 79.822 191.613 L 63.649 219.625 L 47.402 191.483"
                 android:strokeColor="#de91a3"
                 android:strokeWidth="18.8997"
                 android:trimPathEnd="0"/>
             <path
-                android:name="path_12"
-                android:pathData="M 61.987 165.025 L 61.987 241.243"
+                android:name="path_7"
+                android:pathData="M 63.574 145.446 L 63.574 221.664"
                 android:strokeColor="#de91a3"
                 android:strokeWidth="17.9753"
-                android:trimPathStart="1"/>
+                android:trimPathEnd="0"/>
             <path
-                android:name="path_13"
-                android:pathData="M 147.83 164.935 L 147.83 241.964"
+                android:name="path_8"
+                android:pathData="M 148.36 146.414 L 148.36 223.443"
                 android:strokeColor="#de91a3"
                 android:strokeWidth="18.0706"
-                android:trimPathStart="1"/>
+                android:trimPathEnd="0"/>
         </vector>
     </aapt:attr>
-    <target android:name="path_7">
+    <target android:name="path_1">
         <aapt:attr name="android:animation">
             <objectAnimator
-                android:propertyName="trimPathEnd"
+                android:propertyName="trimPathStart"
                 android:duration="500"
-                android:valueFrom="0"
-                android:valueTo="1"
+                android:valueFrom="1"
+                android:valueTo="0"
                 android:valueType="floatType"
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>
         </aapt:attr>
     </target>
-    <target android:name="path_9">
+    <target android:name="path_3">
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="trimPathEnd"
@@ -75,7 +74,19 @@
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>
         </aapt:attr>
     </target>
-    <target android:name="path_11">
+    <target android:name="path_4">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="trimPathEnd"
+                android:startOffset="100"
+                android:duration="200"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_6">
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="trimPathEnd"
@@ -87,36 +98,24 @@
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>
         </aapt:attr>
     </target>
-    <target android:name="path_10">
+    <target android:name="path_7">
         <aapt:attr name="android:animation">
             <objectAnimator
-                android:propertyName="trimPathStart"
-                android:startOffset="100"
-                android:duration="200"
-                android:valueFrom="1"
-                android:valueTo="0"
+                android:propertyName="trimPathEnd"
+                android:duration="300"
+                android:valueFrom="0"
+                android:valueTo="1"
                 android:valueType="floatType"
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>
         </aapt:attr>
     </target>
-    <target android:name="path_12">
+    <target android:name="path_8">
         <aapt:attr name="android:animation">
             <objectAnimator
-                android:propertyName="trimPathStart"
+                android:propertyName="trimPathEnd"
                 android:duration="300"
-                android:valueFrom="1"
-                android:valueTo="0"
-                android:valueType="floatType"
-                android:interpolator="@android:interpolator/fast_out_slow_in"/>
-        </aapt:attr>
-    </target>
-    <target android:name="path_13">
-        <aapt:attr name="android:animation">
-            <objectAnimator
-                android:propertyName="trimPathStart"
-                android:duration="300"
-                android:valueFrom="1"
-                android:valueTo="0"
+                android:valueFrom="0"
+                android:valueTo="1"
                 android:valueType="floatType"
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>
         </aapt:attr>

@@ -122,13 +122,21 @@ class ReadingsActivity : AppCompatActivity(){
         element.card_entry.requestFocus()
     }
 
+    private fun versionAnimation(element: Element, finalLevel: String){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //if phone has version that allows this animation
+            handleAnimationTransitions(element, element.level, finalLevel)
+        }
+        else{
+            println("User's device does NOT ALLOW animation")
+            //we need to insert static image of the icon in a simpler manner
+        }
+    }
+
     private fun handleEntry(element: Element) {
         val holder:String = element.card_entry.text.toString()
         if(holder == "." || holder == ""){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                handleAnimationTransitions(element, element.level, "")
-            }
             element.card_entry.setText("")
+            versionAnimation(element, "")
         }
         else if(holder != ""){
             var entryValue:Float = 0f
@@ -139,45 +147,32 @@ class ReadingsActivity : AppCompatActivity(){
             when(entryValue){
                 in element.ideal_range[0]..element.ideal_range[1] -> {
                     println("${element.name} level of $entryValue is within the ideal range of ${element.ideal_range}")
-                    if(element.level != "ideal") {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //if phone has version that allows this animation
-                            handleAnimationTransitions(element, element.level, "ideal")
-                        }
-                        else{
-                            println("User's device does NOT ALLOW animation")
-                            //we need to insert static image of the icon in a simpler manner
-                        }
-                    }
+                    if(element.level != "ideal") { versionAnimation(element, "ideal") }
                     else{ println("Animation NOT triggered!")}
                 }
+
+                in element.full_range[0]..element.ideal_range[0] -> {
+                    println("${element.name} level of $entryValue is BELOW the ideal range of ${element.ideal_range}")
+                    if(element.level != "low") { versionAnimation(element, "low") }
+                    else{ println("Animation NOT triggered!")}
+                }
+
                 in element.ideal_range[1]..element.full_range[1] -> {
                     println("${element.name} level of $entryValue is ABOVE the ideal range of ${element.ideal_range}")
-                    if(element.level != "high") {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //if phone has version that allows this animation
-                            handleAnimationTransitions(element, element.level, "high")
-                        }
-                        else{
-                            println("User's device does NOT ALLOW animation")
-                            //we need to insert static image of the icon in a simpler manner
-                        }
-                    }
+                    if(element.level != "high") { versionAnimation(element, "high") }
                     else{ println("Animation NOT triggered!")}
                 }
             }
-
             //if entry is larger than element's max value
             if(entryValue >= element.full_range[1]){
                 element.card_entry.setText("≥${element.full_range[1].toInt()}")
                 println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
             }
-
             //if entry is less than element's min value
             else if(entryValue <= element.full_range[0]){
                 element.card_entry.setText("≤${element.full_range[0].toInt()}")
                 println("${element.name} level of $entryValue is outside the range of ${element.full_range}")
             }
-
-
         }
     }
 
@@ -206,11 +201,14 @@ class ReadingsActivity : AppCompatActivity(){
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun handleAnimationTransitions(element: Element, startingLevel: String, finalLevel: String){
         activateClosingAnimation(element, startingLevel)
-        element.level_icon.postDelayed(Runnable() {
-            run() {
-                activateOpeningAnimation(element, finalLevel)
-            }
-        }, 500)
+        if(startingLevel != "") {
+            element.level_icon.postDelayed(Runnable() {
+                run() {
+                    activateOpeningAnimation(element, finalLevel)
+                }
+            }, 850)
+        }
+        else{ activateOpeningAnimation(element, finalLevel) }
         element.level = finalLevel
     }
 
@@ -232,9 +230,14 @@ class ReadingsActivity : AppCompatActivity(){
                     animation.start()
                 }
             }
-            else -> println("Haven't reached this point yet")
+            "low" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.low_opening_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
         }
-        element.level = level
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -246,7 +249,6 @@ class ReadingsActivity : AppCompatActivity(){
                     val animation = background as AnimatedVectorDrawable
                     animation.start()
                 }
-                element.level = ""
             }
             "high" -> {
                 element.level_icon.apply{
@@ -254,9 +256,14 @@ class ReadingsActivity : AppCompatActivity(){
                     val animation = background as AnimatedVectorDrawable
                     animation.start()
                 }
-                element.level = ""
             }
-            else -> println("Haven't reached this point yet")
+            "low" -> {
+                element.level_icon.apply{
+                    setBackgroundResource(R.drawable.low_closing_animation)
+                    val animation = background as AnimatedVectorDrawable
+                    animation.start()
+                }
+            }
         }
     }
 
